@@ -1,8 +1,58 @@
-# macOS system files
-.DS_Store
+# ──────────────────────────────────────────────
+# Mortgage Servicing Analytics Platform
+# ──────────────────────────────────────────────
 
-# Python cache
+# ── Raw & processed data (too large + proprietary) ──
+data/raw/
+data/clean/
+data/*.duckdb
+data/*.duckdb.wal
+*.parquet
+
+# ── Generated reports (reproducible from code) ──
+reports/*.html
+
+# ── ML model artifacts ──
+python/ml/model_artifacts/*.joblib
+python/ml/model_artifacts/*.pkl
+
+# ── Python ──
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+.env
+
+# ── Jupyter (if used for exploration) ──
+.ipynb_checkpoints/
+*.ipynb
+
+# ── macOS ──
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── VS Code ──
+.vscode/
+*.code-workspace
+
+# ── Tableau (packaged workbook is large) ──
+tableau/*.twbx
+tableau/*.hyper
+tableau/*.tde
+
+# ── OS / editor temp files ──
+*.swp
+*.swo
+*~
+Thumbs.db
+
+# ── Logs ──
+*.log
