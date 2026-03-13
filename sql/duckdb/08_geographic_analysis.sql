@@ -2,6 +2,7 @@
 -- 08_geographic_analysis.sql
 -- Purpose: State-level portfolio metrics for choropleth map
 --          and geographic risk assessment
+-- Author: Amjad Ali Kudsi
 -- Consumer: Dashboard map, Tableau Page 1, report hotspots
 -- ============================================================
 

@@ -1,6 +1,7 @@
 -- ============================================================
 -- 07_vintage_comparison.sql
 -- Purpose: Side-by-side performance metrics across all vintages
+-- Author: Amjad Ali Kudsi
 -- Consumer: Tableau Page 3, report vintage table, dashboard
 -- ============================================================
 

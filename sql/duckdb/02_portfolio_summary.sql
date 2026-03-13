@@ -1,6 +1,7 @@
 -- ============================================================
 -- 02_portfolio_summary.sql
 -- Purpose: Top-level portfolio KPIs and breakdowns
+-- Author: Amjad Ali Kudsi
 -- Consumer: Dashboard KPI cards, report summary section
 -- ============================================================
 

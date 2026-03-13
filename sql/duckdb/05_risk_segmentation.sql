@@ -2,6 +2,7 @@
 -- 05_risk_segmentation.sql
 -- Purpose: Cross-tabulation of risk dimensions with delinquency
 --          rates and UPB exposure per segment
+-- Author: Amjad Ali Kudsi
 -- Consumer: ML feature matrix, risk heatmap, report top-10
 -- ============================================================
 

@@ -1,5 +1,6 @@
 """
 validator.py — Post-load quality gates.
+Author: Amjad Ali Kudsi
 
 Runs checks against the loaded DuckDB database and reports
 pass/warn/fail results. Does not modify data.
