@@ -1,0 +1,202 @@
+# ─────────────────────────────────────────────────────────────────
+# Mortgage Servicing Analytics Platform — Configuration
+# ─────────────────────────────────────────────────────────────────
+# All configurable parameters in one place.
+# Edit this file to change bucket boundaries, thresholds, paths, etc.
+
+# ── Paths ──
+paths:
+  input_dir: "data/raw/"
+  database: "data/mortgage_analytics.duckdb"
+  reports_dir: "reports/"
+  log_file: "reports/etl_log.txt"
+  manifest_file: "reports/etl_manifest.csv"
+
+# ── Database ──
+database:
+  table_name: "loans"
+
+# ── Column Schema ──
+# 90 fields in Freddie Mac LLD files, in positional order.
+# [position, column_name, data_type (str/int/float)]
+columns:
+  - [0,  "reporting_period",         "str"]
+  - [1,  "pool_prefix",              "str"]
+  - [2,  "loan_id",                  "str"]
+  - [3,  "amortization_type",        "str"]
+  - [4,  "seller_name",              "str"]
+  - [5,  "property_state",           "str"]
+  - [6,  "postal_code",              "str"]
+  - [7,  "msa",                      "str"]
+  - [8,  "orig_date",                "str"]
+  - [9,  "maturity_date",            "str"]
+  - [10, "loan_term",                "int"]
+  - [11, "orig_interest_rate",       "float"]
+  - [12, "orig_loan_amount",         "float"]
+  - [13, "orig_upb",                 "float"]
+  - [14, "occupancy_status",         "str"]
+  - [15, "channel",                  "str"]
+  - [16, "property_type",            "str"]
+  - [17, "num_units",                "int"]
+  - [18, "loan_purpose",             "str"]
+  - [19, "num_borrowers",            "int"]
+  - [20, "first_time_homebuyer",     "str"]
+  - [21, "prepayment_penalty",       "str"]
+  - [22, "credit_score",             "int"]
+  - [23, "ltv",                      "int"]
+  - [24, "cltv",                     "int"]
+  - [25, "dti",                      "int"]
+  - [26, "mi_percent",               "int"]
+  - [27, "co_borrower_credit_score", "int"]
+  - [28, "f29",                      "str"]
+  - [29, "f30",                      "str"]
+  - [30, "f31",                      "str"]
+  - [31, "f32",                      "str"]
+  - [32, "servicer_name",            "str"]
+  - [33, "loan_age",                 "int"]
+  - [34, "remaining_months",         "int"]
+  - [35, "adj_remaining_months",     "int"]
+  - [36, "delinquency_status",       "str"]
+  - [37, "payment_history",          "str"]
+  - [38, "current_interest_rate",    "float"]
+  - [39, "current_ib_upb",           "float"]
+  - [40, "current_actual_upb",       "float"]
+  - [41, "current_deferred_upb",     "float"]
+  - [42, "mi_cancel_indicator",      "str"]
+  - [43, "first_default_date",       "str"]
+  - [44, "f45",                      "str"]
+  - [45, "f46",                      "str"]
+  - [46, "f47",                      "str"]
+  - [47, "zero_balance_eff_date",    "str"]
+  - [48, "f49",                      "str"]
+  - [49, "f50",                      "str"]
+  - [50, "f51",                      "str"]
+  - [51, "f52",                      "str"]
+  - [52, "f53",                      "str"]
+  - [53, "f54",                      "str"]
+  - [54, "f55",                      "str"]
+  - [55, "actual_loss",              "float"]
+  - [56, "f57",                      "str"]
+  - [57, "f58",                      "str"]
+  - [58, "high_balance_indicator",   "str"]
+  - [59, "orig_dti_2",              "int"]
+  - [60, "f61",                      "str"]
+  - [61, "current_credit_score",     "int"]
+  - [62, "co_borr_current_score",    "int"]
+  - [63, "f64",                      "str"]
+  - [64, "f65",                      "str"]
+  - [65, "f66",                      "str"]
+  - [66, "f67",                      "str"]
+  - [67, "f68",                      "str"]
+  - [68, "f69",                      "str"]
+  - [69, "f70",                      "str"]
+  - [70, "f71",                      "str"]
+  - [71, "f72",                      "str"]
+  - [72, "f73",                      "str"]
+  - [73, "f74",                      "str"]
+  - [74, "f75",                      "str"]
+  - [75, "f76",                      "str"]
+  - [76, "f77",                      "str"]
+  - [77, "f78",                      "str"]
+  - [78, "f79",                      "str"]
+  - [79, "f80",                      "str"]
+  - [80, "f81",                      "str"]
+  - [81, "f82",                      "str"]
+  - [82, "f83",                      "str"]
+  - [83, "mi_type",                  "str"]
+  - [84, "servicing_indicator",      "str"]
+  - [85, "f86",                      "str"]
+  - [86, "f87",                      "str"]
+  - [87, "f88",                      "str"]
+  - [88, "relief_refinance",         "str"]
+  - [89, "f90",                      "str"]
+
+# ── SC Format Field Mapping ──
+# Maps SC record type 20/50 field positions → unified column names
+sc_field_map:
+  loan_id:              [20, 1]
+  amortization_type:    [20, 3]
+  num_borrowers:        [20, 4]
+  first_time_homebuyer: [20, 5]
+  prepayment_penalty:   [20, 6]
+  seller_name:          [20, 11]
+  property_state:       [20, 12]
+  postal_code:          [20, 13]
+  msa:                  [20, 14]
+  orig_date:            [20, 15]
+  loan_term:            [20, 17]
+  orig_interest_rate:   [20, 18]
+  orig_loan_amount:     [20, 19]
+  orig_upb:             [20, 20]
+  occupancy_status:     [20, 21]
+  channel:              [20, 22]
+  property_type:        [20, 23]
+  num_units:            [20, 24]
+  loan_purpose:         [20, 25]
+  credit_score:         [20, 29]
+  ltv:                  [20, 30]
+  cltv:                 [20, 31]
+  dti:                  [20, 32]
+  reporting_period:     [50, 2]
+  servicer_name:        [50, 3]
+  current_interest_rate: [50, 5]
+  maturity_date:        [50, 6]
+  current_deferred_upb: [50, 7]
+  delinquency_status:   [50, 18]
+  payment_history:      [50, 19]
+
+# ── Sentinel Values ──
+sentinels:
+  credit_score:             [9999, 0]
+  co_borrower_credit_score: [9999, 0]
+  current_credit_score:     [9999, 0]
+  co_borr_current_score:    [9999, 0]
+  dti:                      [999, 0]
+  ltv:                      [999, 0]
+  cltv:                     [999, 9999, 0]
+  mi_percent:               [999]
+  orig_dti_2:               [999, 0]
+
+# ── Derived Column Definitions ──
+derived:
+  dpd_map:
+    "00": "Current"
+    "01": "30_DPD"
+    "02": "60_DPD"
+    "03": "90_DPD"
+    "RA": "REO_Acquired"
+  dpd_numeric_gte: 4          # Codes 04+ become "120_Plus_DPD"
+  dpd_default: "Other"
+
+  credit_score_bands:
+    - [0,    619, "Subprime (<620)"]
+    - [620,  679, "Fair (620-679)"]
+    - [680,  719, "Good (680-719)"]
+    - [720,  779, "Very Good (720-779)"]
+    - [780, 9999, "Excellent (780+)"]
+
+  ltv_buckets:
+    - [0,   60, "Low (<=60)"]
+    - [61,  80, "Medium (61-80)"]
+    - [81,  90, "High (81-90)"]
+    - [91, 999, "Very High (>90)"]
+
+  rate_buckets:
+    - [0.0,   3.499, "Below 3.5%"]
+    - [3.5,   4.499, "3.5% - 4.5%"]
+    - [4.5,   5.499, "4.5% - 5.5%"]
+    - [5.5,   6.499, "5.5% - 6.5%"]
+    - [6.5, 999.0,   "6.5%+"]
+
+# ── Validation Thresholds ──
+validation:
+  max_null_pct_critical:
+    loan_id: 0.0
+    delinquency_status: 1.0
+  max_null_pct_warning:
+    credit_score: 5.0
+    ltv: 5.0
+    current_upb: 2.0
+  max_duplicate_loan_ids: 0
+  expected_field_count: 90
+  min_loans_per_file: 100
