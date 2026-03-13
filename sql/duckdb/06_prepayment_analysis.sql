@@ -2,6 +2,7 @@
 -- 06_prepayment_analysis.sql
 -- Purpose: Portfolio-level prepayment behavior by comparing
 --          original UPB to current UPB across vintages and rates
+-- Author: Amjad Ali Kudsi
 -- Consumer: Tableau Page 3, report
 --
 -- Note: This computes cumulative principal paydown, not monthly

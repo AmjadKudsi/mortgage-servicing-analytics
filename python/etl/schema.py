@@ -1,5 +1,6 @@
 """
 schema.py — Column definitions loaded from config.yaml.
+Author: Amjad Ali Kudsi
 
 Provides structured access to column names, types, sentinels,
 and derived column definitions. Nothing is hardcoded here —

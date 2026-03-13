@@ -1,5 +1,6 @@
 """
 detector.py — File format detection and field validation.
+Author: Amjad Ali Kudsi
 
 Reads the first few rows of a file, determines whether it's
 SC-format (record types 10/20/50/80) or DI-format (flat),

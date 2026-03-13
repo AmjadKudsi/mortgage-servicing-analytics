@@ -1,5 +1,6 @@
 """
 sql_runner.py — Executes SQL query files against the DuckDB database.
+Author: Amjad Ali Kudsi
 
 Used by all downstream consumers (Tableau export, report generator,
 ML pipeline, JSON exporter) to get data. SQL is the single source of truth.

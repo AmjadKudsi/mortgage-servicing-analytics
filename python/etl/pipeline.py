@@ -1,5 +1,6 @@
 """
 pipeline.py — Main ETL orchestrator.
+Author: Amjad Ali Kudsi
 
 Calls each module in sequence:
     1. Load config → build schema

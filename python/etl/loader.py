@@ -1,5 +1,6 @@
 """
 loader.py — DuckDB table creation and data insertion.
+Author: Amjad Ali Kudsi
 
 Idempotent: if data from the same pool_prefix already exists,
 it is deleted before re-inserting. Safe to re-run after fixing bugs.

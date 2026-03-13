@@ -1,5 +1,6 @@
 """
 parser.py — File parsers for DI-format and SC-format LLD files.
+Author: Amjad Ali Kudsi
 
 Each parser reads a raw file and returns a pandas DataFrame
 with column names applied from the schema. No cleaning happens here —

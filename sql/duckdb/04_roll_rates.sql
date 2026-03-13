@@ -2,6 +2,7 @@
 -- 04_roll_rates.sql
 -- Purpose: Month-to-month transition probabilities between
 --          delinquency states, derived from payment history strings
+-- Author: Amjad Ali Kudsi
 -- Consumer: Tableau Page 2, report roll rate matrix
 --
 -- How it works:

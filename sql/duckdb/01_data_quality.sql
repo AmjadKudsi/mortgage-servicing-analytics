@@ -1,6 +1,7 @@
 -- ============================================================
 -- 01_data_quality.sql
 -- Purpose: Automated data quality assessment
+-- Author: Amjad Ali Kudsi
 -- Consumer: DQ report generator, pipeline validation
 -- ============================================================
 

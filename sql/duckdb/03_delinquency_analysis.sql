@@ -1,6 +1,7 @@
 -- ============================================================
 -- 03_delinquency_analysis.sql
 -- Purpose: Delinquency rates sliced by every key dimension
+-- Author: Amjad Ali Kudsi
 -- Consumer: Tableau Page 1, dashboard charts, report
 -- ============================================================
 

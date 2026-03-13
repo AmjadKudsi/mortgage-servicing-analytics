@@ -200,3 +200,11 @@ validation:
   max_duplicate_loan_ids: 0
   expected_field_count: 90
   min_loans_per_file: 100
+
+# ── Project Credits ──
+author:
+  name: "Amjad Ali Kudsi"
+  email: "kudsiamjad@gmail.com"
+  linkedin: "linkedin.com/in/amjadkudsi"
+  github: "github.com/AmjadKudsi"
+  portfolio: "AmjadKudsi.github.io/mortgage-servicing-analytics"

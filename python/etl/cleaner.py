@@ -1,5 +1,6 @@
 """
 cleaner.py — Data cleaning and derived column generation.
+Author: Amjad Ali Kudsi
 
 Takes a raw DataFrame from the parser, applies type casting,
 sentinel replacement, and computes derived columns.
