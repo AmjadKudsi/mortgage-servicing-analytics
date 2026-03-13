@@ -1,0 +1,149 @@
+05:51:37 | INFO  | ============================================================
+05:51:37 | INFO  | MORTGAGE SERVICING ANALYTICS — ETL PIPELINE
+05:51:37 | INFO  | ============================================================
+05:51:37 | INFO  | Config:   python/etl/config.yaml
+05:51:37 | INFO  | Input:    data/raw/
+05:51:37 | INFO  | Database: data/mortgage_analytics.duckdb
+05:51:37 | INFO  | Schema:   90 columns
+05:51:37 | INFO  | 
+05:51:37 | INFO  | Found 11 file(s) to process:
+05:51:37 | INFO  |   15SC01_20260201_lld.txt (0.9 MB)
+05:51:37 | INFO  |   16DI01_20260201_lld.txt (5.4 MB)
+05:51:37 | INFO  |   17DNA1_20260201_lld.txt (44.1 MB)
+05:51:37 | INFO  |   18DNA1_20260201_lld.txt (47.5 MB)
+05:51:37 | INFO  |   19DNA1_20260201_lld.txt (34.5 MB)
+05:51:37 | INFO  |   20DNA1_20260201_lld.txt (38.7 MB)
+05:51:37 | INFO  |   21DNA1_20260201_lld.txt (61.8 MB)
+05:51:37 | INFO  |   22DNA1_20260201_lld.txt (38.0 MB)
+05:51:37 | INFO  |   23DNA1_20260201_lld.txt (16.4 MB)
+05:51:37 | INFO  |   24DNA1_20260201_lld.txt (20.6 MB)
+05:51:37 | INFO  |   25DNA1_20260201_lld.txt (19.9 MB)
+05:51:37 | INFO  | 
+05:51:37 | INFO  | Processing: 15SC01_20260201_lld.txt (0.9 MB)
+05:51:37 | INFO  |   Detected: SC format, 41 fields/row, 1,150 lines, schema_match=True
+05:51:37 | INFO  |   Parsed: 574 loans (rec20=574, rec50=574, unmatched=0)
+05:51:37 | INFO  |   Cleaned: 574 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.0), 'ltv': np.float64(0.0), 'dti': np.float64(0.0), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:51:37 | INFO  |   Created table 'loans' with explicit schema
+05:51:37 | INFO  |   Loaded: 574 rows → DuckDB (DB total: 574)
+05:51:37 | INFO  |   [process_file] completed in 0.1s
+05:51:37 | INFO  | 
+05:51:37 | INFO  | Processing: 16DI01_20260201_lld.txt (5.4 MB)
+05:51:37 | INFO  |   Detected: DI format, 90 fields/row, 16,613 lines, schema_match=True
+05:51:37 | INFO  |   Parsed: 16,613 loans, 0 skipped
+05:51:37 | INFO  |   Sentinels replaced: 22,820 across 6 columns
+05:51:37 | INFO  |   Cleaned: 16,613 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.01), 'ltv': np.float64(0.0), 'dti': np.float64(0.02), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:51:37 | INFO  |   Loaded: 16,613 rows → DuckDB (DB total: 17,187)
+05:51:37 | INFO  |   [process_file] completed in 0.6s
+05:51:37 | INFO  | 
+05:51:37 | INFO  | Processing: 17DNA1_20260201_lld.txt (44.1 MB)
+05:51:37 | INFO  |   Detected: DI format, 90 fields/row, 137,250 lines, schema_match=True
+05:51:38 | INFO  |   Parsed: 137,250 loans, 0 skipped
+05:51:41 | INFO  |   Sentinels replaced: 190,031 across 6 columns
+05:51:41 | INFO  |   Cleaned: 137,250 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.01), 'ltv': np.float64(0.0), 'dti': np.float64(0.04), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:51:42 | INFO  |   Loaded: 137,250 rows → DuckDB (DB total: 154,437)
+05:51:42 | INFO  |   [process_file] completed in 5.0s
+05:51:42 | INFO  | 
+05:51:42 | INFO  | Processing: 18DNA1_20260201_lld.txt (47.5 MB)
+05:51:42 | INFO  |   Detected: DI format, 90 fields/row, 146,937 lines, schema_match=True
+05:51:43 | INFO  |   Parsed: 146,937 loans, 0 skipped
+05:51:46 | INFO  |   Sentinels replaced: 200,389 across 6 columns
+05:51:46 | INFO  |   Cleaned: 146,937 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.1), 'ltv': np.float64(0.0), 'dti': np.float64(0.05), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:51:48 | INFO  |   Loaded: 146,937 rows → DuckDB (DB total: 301,374)
+05:51:48 | INFO  |   [process_file] completed in 5.6s
+05:51:48 | INFO  | 
+05:51:48 | INFO  | Processing: 19DNA1_20260201_lld.txt (34.5 MB)
+05:51:48 | INFO  |   Detected: DI format, 90 fields/row, 106,427 lines, schema_match=True
+05:51:49 | INFO  |   Parsed: 106,427 loans, 0 skipped
+05:51:51 | INFO  |   Sentinels replaced: 141,160 across 6 columns
+05:51:51 | INFO  |   Cleaned: 106,427 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.03), 'ltv': np.float64(0.0), 'dti': np.float64(0.0), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:51:52 | INFO  |   Loaded: 106,427 rows → DuckDB (DB total: 407,801)
+05:51:52 | INFO  |   [process_file] completed in 3.6s
+05:51:52 | INFO  | 
+05:51:52 | INFO  | Processing: 20DNA1_20260201_lld.txt (38.7 MB)
+05:51:52 | INFO  |   Detected: DI format, 90 fields/row, 117,581 lines, schema_match=True
+05:51:52 | INFO  |   Parsed: 117,581 loans, 0 skipped
+05:51:55 | INFO  |   Sentinels replaced: 157,650 across 6 columns
+05:51:55 | INFO  |   Cleaned: 117,581 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.07), 'ltv': np.float64(0.0), 'dti': np.float64(0.01), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:51:55 | INFO  |   Loaded: 117,581 rows → DuckDB (DB total: 525,382)
+05:51:56 | INFO  |   [process_file] completed in 3.9s
+05:51:56 | INFO  | 
+05:51:56 | INFO  | Processing: 21DNA1_20260201_lld.txt (61.8 MB)
+05:51:56 | INFO  |   Detected: DI format, 90 fields/row, 193,729 lines, schema_match=True
+05:51:57 | INFO  |   Parsed: 193,729 loans, 0 skipped
+05:52:01 | INFO  |   Sentinels replaced: 338,900 across 6 columns
+05:52:01 | INFO  |   Cleaned: 193,729 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.02), 'ltv': np.float64(0.0), 'dti': np.float64(0.0), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:52:02 | INFO  |   Loaded: 193,729 rows → DuckDB (DB total: 719,111)
+05:52:02 | INFO  |   [process_file] completed in 6.7s
+05:52:02 | INFO  | 
+05:52:02 | INFO  | Processing: 22DNA1_20260201_lld.txt (38.0 MB)
+05:52:02 | INFO  |   Detected: DI format, 90 fields/row, 109,774 lines, schema_match=True
+05:52:03 | INFO  |   Parsed: 109,774 loans, 0 skipped
+05:52:05 | INFO  |   Sentinels replaced: 213,585 across 6 columns
+05:52:05 | INFO  |   Cleaned: 109,774 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.02), 'ltv': np.float64(0.0), 'dti': np.float64(0.0), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:52:06 | INFO  |   Loaded: 109,774 rows → DuckDB (DB total: 828,885)
+05:52:06 | INFO  |   [process_file] completed in 3.6s
+05:52:06 | INFO  | 
+05:52:06 | INFO  | Processing: 23DNA1_20260201_lld.txt (16.4 MB)
+05:52:06 | INFO  |   Detected: DI format, 90 fields/row, 47,367 lines, schema_match=True
+05:52:06 | INFO  |   Parsed: 47,367 loans, 0 skipped
+05:52:07 | INFO  |   Sentinels replaced: 96,029 across 6 columns
+05:52:07 | INFO  |   Cleaned: 47,367 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.01), 'ltv': np.float64(0.0), 'dti': np.float64(0.03), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:52:08 | INFO  |   Loaded: 47,367 rows → DuckDB (DB total: 876,252)
+05:52:08 | INFO  |   [process_file] completed in 1.6s
+05:52:08 | INFO  | 
+05:52:08 | INFO  | Processing: 24DNA1_20260201_lld.txt (20.6 MB)
+05:52:08 | INFO  |   Detected: DI format, 90 fields/row, 59,003 lines, schema_match=True
+05:52:08 | INFO  |   Parsed: 59,003 loans, 0 skipped
+05:52:09 | INFO  |   Sentinels replaced: 123,535 across 6 columns
+05:52:09 | INFO  |   Cleaned: 59,003 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.03), 'ltv': np.float64(0.0), 'dti': np.float64(0.03), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:52:11 | INFO  |   Loaded: 59,003 rows → DuckDB (DB total: 935,255)
+05:52:11 | INFO  |   [process_file] completed in 3.5s
+05:52:11 | INFO  | 
+05:52:11 | INFO  | Processing: 25DNA1_20260201_lld.txt (19.9 MB)
+05:52:11 | INFO  |   Detected: DI format, 90 fields/row, 57,034 lines, schema_match=True
+05:52:11 | INFO  |   Parsed: 57,034 loans, 0 skipped
+05:52:12 | INFO  |   Sentinels replaced: 118,802 across 6 columns
+05:52:12 | INFO  |   Cleaned: 57,034 rows, key null rates: {'loan_id': np.float64(0.0), 'credit_score': np.float64(0.03), 'ltv': np.float64(0.0), 'dti': np.float64(0.01), 'delinquency_status': np.float64(0.0), 'current_upb': np.float64(0.0), 'property_state': np.float64(0.0)}
+05:52:13 | INFO  |   Loaded: 57,034 rows → DuckDB (DB total: 992,289)
+05:52:13 | INFO  |   [process_file] completed in 1.9s
+05:52:13 | INFO  | 
+05:52:13 | INFO  | 
+05:52:13 | INFO  | ============================================================
+05:52:13 | INFO  | POST-LOAD VALIDATION
+05:52:13 | INFO  | ============================================================
+05:52:13 | INFO  |   Total rows: 992,289
+05:52:13 | INFO  |   Duplicate loan IDs: 0 [PASS]
+05:52:13 | INFO  |   Null rate [loan_id]: 0.0% [PASS]
+05:52:13 | INFO  |   Null rate [delinquency_status]: 0.0% [PASS]
+05:52:13 | INFO  |   Null rate [credit_score]: 0.04% [PASS]
+05:52:13 | INFO  |   Null rate [ltv]: 0.0% [PASS]
+05:52:13 | INFO  |   Null rate [current_upb]: 0.0% [PASS]
+05:52:13 | INFO  |   Range [Credit score]: 0 out of range [PASS]
+05:52:13 | INFO  |   Range [LTV]: 0 out of range [PASS]
+05:52:13 | INFO  |   Range [Orig interest rate]: 0 out of range [PASS]
+05:52:13 | INFO  | 
+  Vintage summary (11 years):
+05:52:13 | INFO  |     2014:      296 loans  $         773,486  DLQ  0.34%  FICO 758  Rate 4.219%
+05:52:13 | INFO  |     2015:    2,887 loans  $     715,073,248  DLQ  0.35%  FICO 770  Rate 4.000%
+05:52:13 | INFO  |     2016:  148,415 loans  $  32,054,511,239  DLQ  0.98%  FICO 750  Rate 3.994%
+05:52:13 | INFO  |     2017:  157,129 loans  $  33,770,687,470  DLQ  0.97%  FICO 746  Rate 4.417%
+05:52:13 | INFO  |     2018:  110,769 loans  $  24,048,103,893  DLQ  0.87%  FICO 747  Rate 4.765%
+05:52:13 | INFO  |     2019:  105,940 loans  $  24,908,145,596  DLQ  0.83%  FICO 750  Rate 4.657%
+05:52:13 | INFO  |     2020:  193,679 loans  $  52,230,297,879  DLQ  0.56%  FICO 759  Rate 3.328%
+05:52:13 | INFO  |     2021:  109,770 loans  $  30,368,639,368  DLQ  1.35%  FICO 749  Rate 3.188%
+05:52:13 | INFO  |     2022:   50,446 loans  $  15,029,951,688  DLQ  2.39%  FICO 746  Rate 5.385%
+05:52:13 | INFO  |     2023:   56,813 loans  $  16,636,198,240  DLQ  1.79%  FICO 750  Rate 6.520%
+05:52:13 | INFO  |     2024:   56,145 loans  $  17,908,222,425  DLQ  1.09%  FICO 755  Rate 6.926%
+05:52:13 | INFO  | 
+  Overall validation: PASS
+05:52:13 | INFO  |     PASS: 11
+05:52:13 | INFO  |     WARN: 0
+05:52:13 | INFO  |     FAIL: 0
+05:52:13 | INFO  | 
+Manifest saved: reports/etl_manifest.csv
+05:52:13 | INFO  | 
+05:52:13 | INFO  | ============================================================
+05:52:13 | INFO  | PIPELINE COMPLETE
+05:52:13 | INFO  | ============================================================
+05:52:13 | INFO  |   Files:      11 total, 11 loaded, 0 errors, 0 skipped
+05:52:13 | INFO  |   Validation: PASS
