@@ -1,0 +1,375 @@
+{
+  "generated_at": "2026-03-14T08:58:18.609188",
+  "model_b": {
+    "purpose": "Origination risk predictor \u2014 genuine predictive model",
+    "features_used": [
+      "credit_score",
+      "ltv",
+      "dti",
+      "orig_interest_rate",
+      "loan_age",
+      "orig_loan_amount",
+      "num_borrowers",
+      "credit_score_band_Fair (620-679)",
+      "credit_score_band_Good (680-719)",
+      "credit_score_band_Subprime (<620)",
+      "credit_score_band_Very Good (720-779)",
+      "ltv_bucket_Medium (61-80)",
+      "ltv_bucket_Very High (>90)",
+      "rate_bucket_4.5% - 5.5%",
+      "rate_bucket_5.5% - 6.5%",
+      "rate_bucket_6.5%+",
+      "rate_bucket_Below 3.5%",
+      "channel_B",
+      "channel_C",
+      "channel_R",
+      "property_type_CP",
+      "property_type_MH",
+      "property_type_PU",
+      "property_type_SF",
+      "occupancy_status_N",
+      "occupancy_status_P",
+      "loan_purpose_P",
+      "loan_purpose_S",
+      "is_first_time_buyer"
+    ],
+    "split_info": {
+      "split_method": "loan_age_median",
+      "median_age": 42.0,
+      "train_size": 522437,
+      "test_size": 468917,
+      "train_dlq_rate": 0.0119,
+      "test_dlq_rate": 0.0086
+    },
+    "leakage_flags": [],
+    "models": {
+      "logistic_regression": {
+        "model_name": "logistic_regression",
+        "train_time": 1.1,
+        "auc_roc": 0.77,
+        "precision": 0.0189,
+        "recall": 0.7321,
+        "f1_score": 0.0369,
+        "confusion_matrix": [
+          [
+            312720,
+            152184
+          ],
+          [
+            1075,
+            2938
+          ]
+        ],
+        "lift_analysis": [
+          {
+            "top_pct": 1,
+            "loans_reviewed": 4689,
+            "delinquencies_caught": 323,
+            "capture_rate_pct": 8.0
+          },
+          {
+            "top_pct": 5,
+            "loans_reviewed": 23445,
+            "delinquencies_caught": 1026,
+            "capture_rate_pct": 25.6
+          },
+          {
+            "top_pct": 10,
+            "loans_reviewed": 46891,
+            "delinquencies_caught": 1586,
+            "capture_rate_pct": 39.5
+          },
+          {
+            "top_pct": 20,
+            "loans_reviewed": 93783,
+            "delinquencies_caught": 2359,
+            "capture_rate_pct": 58.8
+          }
+        ],
+        "feature_importance": [
+          {
+            "feature": "credit_score",
+            "importance": 0.7015
+          },
+          {
+            "feature": "num_borrowers",
+            "importance": 0.4405
+          },
+          {
+            "feature": "orig_interest_rate",
+            "importance": 0.2779
+          },
+          {
+            "feature": "dti",
+            "importance": 0.2391
+          },
+          {
+            "feature": "loan_age",
+            "importance": 0.2128
+          },
+          {
+            "feature": "rate_bucket_Below 3.5%",
+            "importance": 0.1778
+          },
+          {
+            "feature": "loan_purpose_P",
+            "importance": 0.1686
+          },
+          {
+            "feature": "occupancy_status_P",
+            "importance": 0.1587
+          },
+          {
+            "feature": "occupancy_status_N",
+            "importance": 0.1321
+          },
+          {
+            "feature": "property_type_SF",
+            "importance": 0.1018
+          },
+          {
+            "feature": "credit_score_band_Very Good (720-779)",
+            "importance": 0.0778
+          },
+          {
+            "feature": "orig_loan_amount",
+            "importance": 0.0715
+          },
+          {
+            "feature": "ltv",
+            "importance": 0.0661
+          },
+          {
+            "feature": "credit_score_band_Good (680-719)",
+            "importance": 0.0638
+          },
+          {
+            "feature": "credit_score_band_Fair (620-679)",
+            "importance": 0.0567
+          }
+        ],
+        "safety_status": {
+          "auc_flag": false,
+          "perfect_precision": false,
+          "perfect_recall": false,
+          "diagnosis": "healthy"
+        }
+      },
+      "random_forest": {
+        "model_name": "random_forest",
+        "train_time": 14.5,
+        "auc_roc": 0.7695,
+        "precision": 0.0247,
+        "recall": 0.5789,
+        "f1_score": 0.0474,
+        "confusion_matrix": [
+          [
+            373171,
+            91733
+          ],
+          [
+            1690,
+            2323
+          ]
+        ],
+        "lift_analysis": [
+          {
+            "top_pct": 1,
+            "loans_reviewed": 4689,
+            "delinquencies_caught": 261,
+            "capture_rate_pct": 6.5
+          },
+          {
+            "top_pct": 5,
+            "loans_reviewed": 23445,
+            "delinquencies_caught": 945,
+            "capture_rate_pct": 23.5
+          },
+          {
+            "top_pct": 10,
+            "loans_reviewed": 46891,
+            "delinquencies_caught": 1491,
+            "capture_rate_pct": 37.2
+          },
+          {
+            "top_pct": 20,
+            "loans_reviewed": 93783,
+            "delinquencies_caught": 2319,
+            "capture_rate_pct": 57.8
+          }
+        ],
+        "feature_importance": [
+          {
+            "feature": "credit_score",
+            "importance": 0.2761
+          },
+          {
+            "feature": "credit_score_band_Fair (620-679)",
+            "importance": 0.1028
+          },
+          {
+            "feature": "orig_interest_rate",
+            "importance": 0.0858
+          },
+          {
+            "feature": "loan_age",
+            "importance": 0.083
+          },
+          {
+            "feature": "dti",
+            "importance": 0.0826
+          },
+          {
+            "feature": "orig_loan_amount",
+            "importance": 0.0741
+          },
+          {
+            "feature": "num_borrowers",
+            "importance": 0.0739
+          },
+          {
+            "feature": "credit_score_band_Good (680-719)",
+            "importance": 0.0458
+          },
+          {
+            "feature": "ltv",
+            "importance": 0.034
+          },
+          {
+            "feature": "credit_score_band_Very Good (720-779)",
+            "importance": 0.0239
+          },
+          {
+            "feature": "loan_purpose_P",
+            "importance": 0.0178
+          },
+          {
+            "feature": "rate_bucket_4.5% - 5.5%",
+            "importance": 0.013
+          },
+          {
+            "feature": "occupancy_status_P",
+            "importance": 0.0121
+          },
+          {
+            "feature": "rate_bucket_Below 3.5%",
+            "importance": 0.01
+          },
+          {
+            "feature": "property_type_SF",
+            "importance": 0.0088
+          }
+        ],
+        "safety_status": {
+          "auc_flag": false,
+          "perfect_precision": false,
+          "perfect_recall": false,
+          "diagnosis": "healthy"
+        }
+      }
+    }
+  },
+  "model_a": {
+    "purpose": "Behavioral risk segmentation \u2014 current portfolio risk scoring",
+    "features_used": [
+      "credit_score",
+      "ltv",
+      "dti",
+      "orig_interest_rate",
+      "loan_age",
+      "orig_loan_amount",
+      "num_borrowers",
+      "dlq_count_12m",
+      "max_dpd_12m",
+      "consecutive_current",
+      "dlq_trend_6m",
+      "current_upb",
+      "latest_credit_score",
+      "credit_score_band_Fair (620-679)",
+      "credit_score_band_Good (680-719)",
+      "credit_score_band_Subprime (<620)",
+      "credit_score_band_Very Good (720-779)",
+      "ltv_bucket_Medium (61-80)",
+      "ltv_bucket_Very High (>90)",
+      "rate_bucket_4.5% - 5.5%",
+      "rate_bucket_5.5% - 6.5%",
+      "rate_bucket_6.5%+",
+      "rate_bucket_Below 3.5%",
+      "channel_B",
+      "channel_C",
+      "channel_R",
+      "property_type_CP",
+      "property_type_MH",
+      "property_type_PU",
+      "property_type_SF",
+      "occupancy_status_N",
+      "occupancy_status_P",
+      "loan_purpose_P",
+      "loan_purpose_S",
+      "is_first_time_buyer"
+    ],
+    "feature_importance": [
+      {
+        "feature": "consecutive_current",
+        "importance": 0.4296
+      },
+      {
+        "feature": "max_dpd_12m",
+        "importance": 0.3898
+      },
+      {
+        "feature": "latest_credit_score",
+        "importance": 0.1124
+      },
+      {
+        "feature": "credit_score",
+        "importance": 0.0249
+      },
+      {
+        "feature": "credit_score_band_Fair (620-679)",
+        "importance": 0.011
+      },
+      {
+        "feature": "num_borrowers",
+        "importance": 0.0055
+      },
+      {
+        "feature": "credit_score_band_Good (680-719)",
+        "importance": 0.0049
+      },
+      {
+        "feature": "dti",
+        "importance": 0.0046
+      },
+      {
+        "feature": "loan_age",
+        "importance": 0.0036
+      },
+      {
+        "feature": "orig_interest_rate",
+        "importance": 0.0034
+      },
+      {
+        "feature": "orig_loan_amount",
+        "importance": 0.0021
+      },
+      {
+        "feature": "credit_score_band_Very Good (720-779)",
+        "importance": 0.0016
+      },
+      {
+        "feature": "current_upb",
+        "importance": 0.0016
+      },
+      {
+        "feature": "ltv",
+        "importance": 0.0007
+      },
+      {
+        "feature": "rate_bucket_Below 3.5%",
+        "importance": 0.0007
+      }
+    ],
+    "total_segments": 164
+  }
+}
