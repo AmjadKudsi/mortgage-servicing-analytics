@@ -1,0 +1,152 @@
+[
+  {
+    "from_bucket": "Current",
+    "to_bucket": "Current",
+    "transitions": 10733356,
+    "transition_pct": 99.23
+  },
+  {
+    "from_bucket": "Current",
+    "to_bucket": "30_DPD",
+    "transitions": 45768,
+    "transition_pct": 0.42
+  },
+  {
+    "from_bucket": "Current",
+    "to_bucket": "60_DPD",
+    "transitions": 12977,
+    "transition_pct": 0.12
+  },
+  {
+    "from_bucket": "Current",
+    "to_bucket": "90_DPD",
+    "transitions": 6999,
+    "transition_pct": 0.06
+  },
+  {
+    "from_bucket": "Current",
+    "to_bucket": "120_Plus",
+    "transitions": 17857,
+    "transition_pct": 0.17
+  },
+  {
+    "from_bucket": "30_DPD",
+    "to_bucket": "Current",
+    "transitions": 41253,
+    "transition_pct": 81.99
+  },
+  {
+    "from_bucket": "30_DPD",
+    "to_bucket": "30_DPD",
+    "transitions": 2542,
+    "transition_pct": 5.05
+  },
+  {
+    "from_bucket": "30_DPD",
+    "to_bucket": "60_DPD",
+    "transitions": 1519,
+    "transition_pct": 3.02
+  },
+  {
+    "from_bucket": "30_DPD",
+    "to_bucket": "90_DPD",
+    "transitions": 1183,
+    "transition_pct": 2.35
+  },
+  {
+    "from_bucket": "30_DPD",
+    "to_bucket": "120_Plus",
+    "transitions": 3816,
+    "transition_pct": 7.58
+  },
+  {
+    "from_bucket": "60_DPD",
+    "to_bucket": "Current",
+    "transitions": 12018,
+    "transition_pct": 81.03
+  },
+  {
+    "from_bucket": "60_DPD",
+    "to_bucket": "30_DPD",
+    "transitions": 1230,
+    "transition_pct": 8.29
+  },
+  {
+    "from_bucket": "60_DPD",
+    "to_bucket": "60_DPD",
+    "transitions": 414,
+    "transition_pct": 2.79
+  },
+  {
+    "from_bucket": "60_DPD",
+    "to_bucket": "90_DPD",
+    "transitions": 257,
+    "transition_pct": 1.73
+  },
+  {
+    "from_bucket": "60_DPD",
+    "to_bucket": "120_Plus",
+    "transitions": 913,
+    "transition_pct": 6.16
+  },
+  {
+    "from_bucket": "90_DPD",
+    "to_bucket": "Current",
+    "transitions": 6639,
+    "transition_pct": 80.8
+  },
+  {
+    "from_bucket": "90_DPD",
+    "to_bucket": "30_DPD",
+    "transitions": 884,
+    "transition_pct": 10.76
+  },
+  {
+    "from_bucket": "90_DPD",
+    "to_bucket": "60_DPD",
+    "transitions": 238,
+    "transition_pct": 2.9
+  },
+  {
+    "from_bucket": "90_DPD",
+    "to_bucket": "90_DPD",
+    "transitions": 133,
+    "transition_pct": 1.62
+  },
+  {
+    "from_bucket": "90_DPD",
+    "to_bucket": "120_Plus",
+    "transitions": 323,
+    "transition_pct": 3.93
+  },
+  {
+    "from_bucket": "120_Plus",
+    "to_bucket": "Current",
+    "transitions": 15994,
+    "transition_pct": 75.3
+  },
+  {
+    "from_bucket": "120_Plus",
+    "to_bucket": "30_DPD",
+    "transitions": 3648,
+    "transition_pct": 17.17
+  },
+  {
+    "from_bucket": "120_Plus",
+    "to_bucket": "60_DPD",
+    "transitions": 893,
+    "transition_pct": 4.2
+  },
+  {
+    "from_bucket": "120_Plus",
+    "to_bucket": "90_DPD",
+    "transitions": 322,
+    "transition_pct": 1.52
+  },
+  {
+    "from_bucket": "120_Plus",
+    "to_bucket": "120_Plus",
+    "transitions": 384,
+    "transition_pct": 1.81
+  }
+]

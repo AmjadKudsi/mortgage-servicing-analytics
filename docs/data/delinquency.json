@@ -1,0 +1,38 @@
+[
+  {
+    "dpd_bucket": "Current",
+    "loans": 982034,
+    "total_upb": 245217888766.0,
+    "pct_of_portfolio": 98.97
+  },
+  {
+    "dpd_bucket": "30_DPD",
+    "loans": 5344,
+    "total_upb": 1270163970.0,
+    "pct_of_portfolio": 0.54
+  },
+  {
+    "dpd_bucket": "60_DPD",
+    "loans": 1371,
+    "total_upb": 334463263.0,
+    "pct_of_portfolio": 0.14
+  },
+  {
+    "dpd_bucket": "90_DPD",
+    "loans": 635,
+    "total_upb": 155111106.0,
+    "pct_of_portfolio": 0.06
+  },
+  {
+    "dpd_bucket": "120_Plus_DPD",
+    "loans": 2682,
+    "total_upb": 657926038.0,
+    "pct_of_portfolio": 0.27
+  },
+  {
+    "dpd_bucket": "REO_Acquired",
+    "loans": 223,
+    "total_upb": 35051388.0,
+    "pct_of_portfolio": 0.02
+  }
+]

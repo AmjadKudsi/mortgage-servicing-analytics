@@ -1,0 +1,9 @@
+{
+  "total_loans": 992289.0,
+  "upb_billions": 247.7,
+  "dlq_rate": 1.03,
+  "serious_dlq": 0.36,
+  "avg_fico": 751.0,
+  "avg_rate": 4.38,
+  "vintage_count": 11.0
+}

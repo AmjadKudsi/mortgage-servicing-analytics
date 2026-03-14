@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Amjad Kudsi">
+    <meta name="description" content="Data & AI Engineer — Pipelines, intelligent systems, and real-world solutions.">
+    <title>Amjad Kudsi — Data & AI Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" defer></script>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="top">
+    <img src="assets/photo.jpg" alt="Amjad Kudsi" class="hero-photo">
+    <h1>Amjad Kudsi</h1>
+    <p class="tagline">Data & AI Engineer focused on building reliable pipelines, intelligent systems, and real-world solutions.</p>
+    <p class="tagline-sub">Explore my projects, experience, and ongoing journey.</p>
+    <p class="location">NYC, New York</p>
+    <div class="scroll-indicator">scroll</div>
+</section>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav-bar" id="navbar">
+    <ul class="nav-tabs">
+        <li class="active" data-tab="projects">Projects</li>
+        <li data-tab="journey">Journey</li>
+    </ul>
+    <ul class="nav-links">
+        <li><a href="https://linkedin.com/in/amjadkudsi" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:kudsiamjad@gmail.com">Email</a></li>
+        <li><a href="https://github.com/AmjadKudsi" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+</nav>
+
+<!-- ═══════ CONTENT ═══════ -->
+<div class="content">
+
+<!-- ── PROJECTS TAB ── -->
+<div class="tab-panel active" id="tab-projects">
+
+    <!-- FEATURED: Mortgage Analytics -->
+    <div class="section-header">
+        <h2>Featured Project</h2>
+    </div>
+
+    <div class="featured">
+        <div class="featured-inner">
+            <div class="featured-image">
+                <img src="assets/tableau_preview.png" alt="Mortgage Analytics Dashboard">
+            </div>
+            <div class="featured-body">
+                <span class="featured-label">Mortgage Servicing Analytics Platform</span>
+                <h3>Loan Performance Analytics & Risk Intelligence</h3>
+                <p>End-to-end analytics platform built on 992K Freddie Mac loans ($248B portfolio) spanning 11 origination years. SQL-powered analytical engine with automated data quality checks, interactive Tableau dashboards, ML-based risk scoring, and auto-generated executive reports.</p>
+                <div class="stat-badges">
+                    <span class="stat-badge">992K loans</span>
+                    <span class="stat-badge">$248B portfolio</span>
+                    <span class="stat-badge">11 vintages</span>
+                    <span class="stat-badge">8 SQL queries</span>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="dashboard.html" class="btn btn-primary">Explore Live Dashboard →</a>
+                    <a href="https://github.com/AmjadKudsi/mortgage-servicing-analytics" target="_blank" class="btn btn-outline">View Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ML DEMO -->
+    <div class="section-header" style="margin-top: 40px;">
+        <h2>ML Risk Model — Results Explorer</h2>
+        <p>Dual-model approach: origination predictor (honest AUC) + behavioral segmentation (risk ranking)</p>
+    </div>
+
+    <div class="ml-demo">
+        <div class="ml-tabs">
+            <button class="ml-tab active" data-ml="overview">Model Performance</button>
+            <button class="ml-tab" data-ml="features">Risk Drivers</button>
+            <button class="ml-tab" data-ml="segments">Risk Segments</button>
+            <button class="ml-tab" data-ml="limitations">Shortcomings & Improvements</button>
+        </div>
+
+        <!-- Panel: Overview -->
+        <div class="ml-panel active" id="ml-overview">
+            <div class="ml-kpi-row">
+                <div class="ml-kpi"><div class="value" id="kpi-auc">—</div><div class="label">AUC-ROC (Origination Model)</div></div>
+                <div class="ml-kpi"><div class="value" id="kpi-lift10">—</div><div class="label">Capture at Top 10%</div></div>
+                <div class="ml-kpi"><div class="value" id="kpi-lift20">—</div><div class="label">Capture at Top 20%</div></div>
+                <div class="ml-kpi"><div class="value" id="kpi-segments">—</div><div class="label">Risk Segments Scored</div></div>
+            </div>
+            <div class="ml-chart" id="lift-chart"></div>
+            <div class="ml-note">Model B uses only origination features (credit score, LTV, DTI, interest rate, loan age) — no payment history. This ensures genuine predictive capability without data leakage.</div>
+        </div>
+
+        <!-- Panel: Features -->
+        <div class="ml-panel" id="ml-features">
+            <div class="ml-chart" id="feature-chart"></div>
+            <div class="ml-note">Feature importance from the origination-only model. Credit score is the dominant predictor — a finding consistent with fundamental credit risk theory.</div>
+        </div>
+
+        <!-- Panel: Segments -->
+        <div class="ml-panel" id="ml-segments">
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Top risk segments from the behavioral model (Model A). Segments with highest concentration of delinquent loans.</p>
+            <div style="overflow-x: auto;">
+                <table class="ml-table" id="segments-table">
+                    <thead><tr>
+                        <th>Credit Band</th><th>LTV</th><th>Rate</th><th>Vintage</th>
+                        <th style="text-align:right">Loans</th><th style="text-align:right">Risk Score</th><th style="text-align:right">Actual DLQ</th>
+                    </tr></thead>
+                    <tbody id="segments-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Panel: Limitations -->
+        <div class="ml-panel" id="ml-limitations">
+            <div style="display: grid; gap: 12px;">
+                <div class="ml-note" style="border-left-color: var(--warning);">
+                    <strong style="color: var(--text-primary);">Single-snapshot limitation.</strong><br>
+                    The dataset is a single monthly snapshot, not a time series. True forward prediction (train on month N, predict month N+3) requires sequential monthly data. The origination model predicts current delinquency status from borrower profile — valuable for risk stratification but not a deployment-ready forecasting tool.
+                </div>
+                <div class="ml-note" style="border-left-color: var(--warning);">
+                    <strong style="color: var(--text-primary);">Class imbalance (99:1).</strong><br>
+                    Only ~1% of loans are delinquent. Precision is inherently low (many false positives). This is addressed with balanced class weights and evaluated using lift metrics rather than raw precision. In production, the model would rank loans for prioritized outreach, not make binary approve/deny decisions.
+                </div>
+                <div class="ml-note" style="border-left-color: var(--success);">
+                    <strong style="color: var(--text-primary);">What would improve it.</strong><br>
+                    Monthly time-series data would enable true forecasting. Additional features (employment status, payment amounts, forbearance history) would increase AUC by an estimated 5-10 points. Ensemble methods or gradient boosting could capture more complex risk interactions. A calibration layer would make probability outputs more reliable for dollar-loss estimation.
+                </div>
+                <div class="ml-note" style="border-left-color: var(--accent);">
+                    <strong style="color: var(--text-primary);">Why the dual-model design matters.</strong><br>
+                    The first attempt produced AUC = 1.0 due to data leakage — behavioral features (payment history) encoded the target variable. Rather than hiding this, the redesign separates concerns: Model B uses origination features for honest prediction (AUC ~0.77), Model A uses behavioral features for risk segmentation. This distinction — knowing when a model is predicting vs. merely classifying — is the kind of analytical judgment mortgage analytics teams value.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTHER PROJECTS -->
+    <div class="section-header" style="margin-top: 40px;">
+        <h2>Other Projects</h2>
+    </div>
+
+    <div class="projects-scroll-container">
+        <div class="projects-scroll" id="projects-scroll">
+            <a href="https://github.com/AmjadKudsi/spotify-live-refresh" target="_blank" class="project-card">
+                <img src="assets/proj_spotify.png" class="project-card-img" alt="Spotify Dashboard">
+                <div class="project-card-body">
+                    <h4>Spotify Live Top 200 Dashboard</h4>
+                    <p>Power BI data intelligence platform — historical and real-time analytics engine built with API pipelines and Power BI modeling.</p>
+                    <div class="project-card-tags">
+                        <span class="tag">Power BI</span><span class="tag">REST API</span><span class="tag">CI/CD</span><span class="tag">DAX</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://github.com/AmjadKudsi/StatGuard_agent" target="_blank" class="project-card">
+                <img src="assets/proj_statguard.png" class="project-card-img" alt="StatGuard">
+                <div class="project-card-body">
+                    <h4>StatGuard: Security Patch Assistant</h4>
+                    <p>Can a static-only LLM-based agent safely assist with secure code review without ever executing the target program?</p>
+                    <div class="project-card-tags">
+                        <span class="tag">Gemini 2.5</span><span class="tag">Bandit</span><span class="tag">Multi-Agent</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://github.com/AmjadKudsi/Tic-Tac-Tourney" target="_blank" class="project-card">
+                <img src="assets/proj_tictac.png" class="project-card-img" alt="Tic-Tac-Tourney">
+                <div class="project-card-body">
+                    <h4>Tic-Tac-Tourney</h4>
+                    <p>Game logic with Random, Minimax, and Heuristic AI agents competing against humans in a round-robin tournament.</p>
+                    <div class="project-card-tags">
+                        <span class="tag">AI Agents</span><span class="tag">Minimax</span><span class="tag">Alpha-Beta</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://github.com/Intro-to-Data-Science-Team-10/Analysis-of-Mental-Health-Dynamics" target="_blank" class="project-card">
+                <img src="assets/proj_psych.png" class="project-card-img" alt="Psychometric Prediction">
+                <div class="project-card-body">
+                    <h4>Psychometric Severity Prediction</h4>
+                    <p>Understanding how personality traits and demographics influence mental health outcomes using ML classification.</p>
+                    <div class="project-card-tags">
+                        <span class="tag">Logistic Regression</span><span class="tag">SVM</span><span class="tag">ANOVA</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://github.com/AmjadKudsi/Meta_llama-chatbot" target="_blank" class="project-card">
+                <img src="assets/default_project.png" class="project-card-img" alt="RAG Chatbot">
+                <div class="project-card-body">
+                    <h4>Evidence-Grounded RAG Chatbot</h4>
+                    <p>RAG pipeline using LlamaIndex and FAISS for document-grounded Q&A on IRS tax publications without external APIs.</p>
+                    <div class="project-card-tags">
+                        <span class="tag">LlamaIndex</span><span class="tag">FAISS</span><span class="tag">Pydantic</span><span class="tag">RAGAS</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<!-- ── JOURNEY TAB ── -->
+<div class="tab-panel" id="tab-journey">
+
+    <div class="section-header">
+        <h2>Career & Education</h2>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">July 2025 — Present</div>
+            <div class="timeline-title">Research Assistant</div>
+            <div class="timeline-company">University of New Haven · West Haven, CT</div>
+            <div class="timeline-desc">LLM-assisted software security research — vulnerability detection, multilingual code analysis across 6 languages, and explainable automated repair workflows for real codebases.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">June 2024 — August 2024</div>
+            <div class="timeline-title">Solutions Engineering Intern</div>
+            <div class="timeline-company">Bitwise Inc. · Schaumburg, IL</div>
+            <div class="timeline-desc">Built Python GenAI service with LangChain orchestration, multi-LLM routing, and SQL-to-PySpark conversion pipeline. Led cross-team final presentation across frontend, backend, and GenAI tracks.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">August 2021 — August 2023</div>
+            <div class="timeline-title">Senior Analyst</div>
+            <div class="timeline-company">Capgemini</div>
+            <div class="timeline-desc">Fortune 50 licensing analytics — 50+ Snowflake SQL scripts, ETL migration from Informatica to AWS/Snowflake, end-to-end data validation across S3, DB2, and Snowflake.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 2021 — May 2021</div>
+            <div class="timeline-title">Data Analyst Intern</div>
+            <div class="timeline-company">DevTown (Shape AI)</div>
+            <div class="timeline-desc">Supervised ML models on labeled datasets — 89.5% classification accuracy, 92.9% fraud recall. Deployed regression model as interactive web application.</div>
+        </div>
+
+        <div style="margin-top: 36px;"></div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">August 2023 — May 2025</div>
+            <div class="timeline-title">MS in Data Science (STEM)</div>
+            <div class="timeline-company">University of New Haven</div>
+            <div class="timeline-desc">AWS (Athena, Glue, S3, Lambda), Power BI, NLP, Math for Data Scientists.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">August 2017 — May 2021</div>
+            <div class="timeline-title">BE in Electronics & Telecommunication</div>
+            <div class="timeline-company">University of Pune</div>
+            <div class="timeline-desc">AI, Machine Learning, Data Structures & Algorithms, OOP, SQL.</div>
+        </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 40px;">
+        <h2>Skills</h2>
+    </div>
+
+    <div class="skills-grid">
+        <div class="skill-group">
+            <h4>Languages</h4>
+            <div class="skill-tags">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">Bash</span>
+            </div>
+        </div>
+        <div class="skill-group">
+            <h4>Cloud & Data</h4>
+            <div class="skill-tags">
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Snowflake</span>
+                <span class="skill-tag">DuckDB</span>
+                <span class="skill-tag">Oracle</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">PySpark</span>
+            </div>
+        </div>
+        <div class="skill-group">
+            <h4>Analytics & BI</h4>
+            <div class="skill-tags">
+                <span class="skill-tag">Tableau</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">DAX</span>
+                <span class="skill-tag">Streamlit</span>
+                <span class="skill-tag">Excel</span>
+            </div>
+        </div>
+        <div class="skill-group">
+            <h4>ML & AI</h4>
+            <div class="skill-tags">
+                <span class="skill-tag">scikit-learn</span>
+                <span class="skill-tag">LangChain</span>
+                <span class="skill-tag">RAG Pipelines</span>
+                <span class="skill-tag">FAISS</span>
+                <span class="skill-tag">Transformers</span>
+                <span class="skill-tag">TensorFlow</span>
+            </div>
+        </div>
+        <div class="skill-group">
+            <h4>DevOps & Tools</h4>
+            <div class="skill-tags">
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">GitHub Actions</span>
+                <span class="skill-tag">CI/CD</span>
+                <span class="skill-tag">Azure DevOps</span>
+                <span class="skill-tag">Docker</span>
+            </div>
+        </div>
+        <div class="skill-group">
+            <h4>Certifications</h4>
+            <div class="skill-tags">
+                <span class="skill-tag">Azure AZ-900</span>
+                <span class="skill-tag">Azure DP-900</span>
+                <span class="skill-tag">Azure AI-900</span>
+                <span class="skill-tag">OCI GenAI</span>
+                <span class="skill-tag">OCI Vector Search</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+    <ul class="footer-links">
+        <li><a href="https://linkedin.com/in/amjadkudsi" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/AmjadKudsi" target="_blank">GitHub</a></li>
+        <li><a href="mailto:amjadkudsi@gmail.com">Email</a></li>
+    </ul>
+    <p class="copy">&copy; 2026 Amjad Kudsi · NYC, New York</p>
+</footer>
+
+<script src="app.js"></script>
+<script src="ml-demo.js" defer></script>
+<!-- GoatCounter: replace with your actual script tag -->
+<script data-goatcounter="https://amjadkudsi.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
