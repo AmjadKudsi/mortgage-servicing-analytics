@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="{{ author.name }}">
+<title>Executive Report — Mortgage Servicing Analytics</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f6fa; color: #2c3e50; line-height: 1.6; padding: 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 24px; font-weight: 700; color: #1a2332; margin-bottom: 4px; }
+    .subtitle { font-size: 13px; color: #7f8c8d; margin-bottom: 20px; }
+    section { background: #fff; border-radius: 6px; padding: 20px 24px; margin-bottom: 16px; border: 1px solid #e8e8e8; }
+    section h2 { font-size: 16px; font-weight: 600; color: #1a2332; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1a2332; }
+    section h3 { font-size: 14px; font-weight: 600; color: #2c3e50; margin: 16px 0 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+    th { text-align: left; padding: 8px 10px; background: #f8f9fa; color: #555; font-weight: 600; border-bottom: 2px solid #ddd; }
+    td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; }
+    tr:hover { background: #fafbfc; }
+    .right { text-align: right; }
+    .num { font-variant-numeric: tabular-nums; }
+    .kpi-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .kpi-card { flex: 1; min-width: 130px; background: #f8f9fa; border-radius: 5px; padding: 14px 16px; border: 1px solid #eee; }
+    .kpi-value { font-size: 22px; font-weight: 700; color: #1a2332; }
+    .kpi-label { font-size: 11px; color: #7f8c8d; margin-top: 2px; }
+    .headline { background: #eef2f7; border-left: 4px solid #1a2332; padding: 12px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 14px; }
+    .insight { background: #fef9e7; border-left: 4px solid #f39c12; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 13px; }
+    .cell-high { background: #fadbd8; color: #922b21; font-weight: 600; }
+    .cell-med { background: #fef9e7; color: #b7950b; }
+    .cell-low { background: #d5f5e3; color: #1e8449; }
+    .rec-card { background: #f8f9fa; border-left: 4px solid #2e86c1; padding: 10px 14px; margin: 8px 0; border-radius: 0 4px 4px 0; font-size: 13px; }
+    .rec-card strong { color: #1a2332; }
+    .chart-container { width: 100%; margin: 12px 0; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+    .badge-good { background: #d5f5e3; color: #1e8449; }
+    .badge-caution { background: #fef9e7; color: #b7950b; }
+    .badge-alert { background: #fadbd8; color: #922b21; }
+    footer { text-align: center; color: #bbb; font-size: 11px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; }
+    @media print { body { padding: 12px; } section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Mortgage Portfolio Executive Report</h1>
+<p class="subtitle">Generated: {{ generated_at }} | Portfolio as of: {{ summary.reporting_period }} | Author: {{ author.name }}</p>
+
+<!-- ══════ Section 1: Executive Summary ══════ -->
+<section>
+    <h2>1. Executive Summary</h2>
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-value num">{{ "{:,}".format(summary.total_loans) }}</div>
+            <div class="kpi-label">Total Loans</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">${{ "%.1f"|format(summary.total_upb / 1e9) }}B</div>
+            <div class="kpi-label">Total UPB</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num" style="color: {% if summary.dlq_rate > 1.5 %}#c0392b{% elif summary.dlq_rate > 1.0 %}#b7950b{% else %}#1e8449{% endif %}">{{ summary.dlq_rate }}%</div>
+            <div class="kpi-label">Delinquency Rate (30+ DPD)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">{{ summary.serious_dlq_rate }}%</div>
+            <div class="kpi-label">Serious DLQ (90+ DPD)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">{{ summary.avg_fico }}</div>
+            <div class="kpi-label">Avg FICO at Origination</div>
+        </div>
+    </div>
+    <div class="headline">{{ headline }}</div>
+</section>
+
+<!-- ══════ Section 2: Vintage Performance ══════ -->
+<section>
+    <h2>2. Vintage Performance Comparison</h2>
+    <table>
+        <thead><tr>
+            <th>Vintage</th><th class="right">Loans</th><th class="right">UPB ($B)</th>
+            <th class="right">DLQ Rate</th><th class="right">90+ DPD</th>
+            <th class="right">Avg FICO</th><th class="right">Avg Rate</th>
+        </tr></thead>
+        <tbody>
+        {% for row in vintages %}
+        <tr>
+            <td><strong>{{ row.orig_year }}</strong></td>
+            <td class="right num">{{ "{:,}".format(row.loans) }}</td>
+            <td class="right num">${{ "%.2f"|format(row.upb_billions) }}B</td>
+            <td class="right num {% if row.dlq_rate_pct > avg_dlq * 1.5 %}cell-high{% elif row.dlq_rate_pct > avg_dlq %}cell-med{% else %}cell-low{% endif %}">{{ row.dlq_rate_pct }}%</td>
+            <td class="right num">{{ row.serious_dlq_pct }}%</td>
+            <td class="right num">{{ row.avg_fico }}</td>
+            <td class="right num">{{ row.avg_rate }}%</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if worst_vintage %}
+    <div class="insight">⚠ {{ worst_vintage.orig_year }} vintage has the highest delinquency at {{ worst_vintage.dlq_rate_pct }}% — {{ "%.1f"|format(worst_vintage.dlq_rate_pct / avg_dlq) }}x the portfolio average. This cohort originated at {{ worst_vintage.avg_rate }}% average rate with {{ worst_vintage.avg_fico }} average FICO.</div>
+    {% endif %}
+    {% if best_vintage %}
+    <div class="insight" style="border-left-color: #27ae60;">✓ {{ best_vintage.orig_year }} vintage is the strongest performer at {{ best_vintage.dlq_rate_pct }}% delinquency with {{ best_vintage.avg_fico }} average FICO.</div>
+    {% endif %}
+</section>
+
+<!-- ══════ Section 3: DPD Distribution ══════ -->
+<section>
+    <h2>3. Delinquency Distribution</h2>
+    <div class="chart-container" id="dpd_chart"></div>
+    <script>
+        var dpdData = {{ dpd_chart_data | safe }};
+        Plotly.newPlot('dpd_chart', [{
+            x: dpdData.values,
+            y: dpdData.labels,
+            type: 'bar',
+            orientation: 'h',
+            marker: { color: dpdData.colors },
+            text: dpdData.text,
+            textposition: 'outside',
+            hovertemplate: '%{y}: %{x:,} loans (%{text})<extra></extra>'
+        }], {
+            margin: { l: 120, r: 60, t: 10, b: 40 },
+            xaxis: { title: 'Loan Count' },
+            height: 220,
+            font: { family: '-apple-system, sans-serif', size: 12 }
+        }, { responsive: true, displayModeBar: false });
+    </script>
+</section>
+
+<!-- ══════ Section 4: Roll Rates ══════ -->
+<section>
+    <h2>4. Roll Rate Transition Matrix</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Probability of transitioning between delinquency states (last 12 months of payment history)</p>
+    <table>
+        <thead><tr><th>From ↓ / To →</th>{% for col in roll_columns %}<th class="right">{{ col }}</th>{% endfor %}</tr></thead>
+        <tbody>
+        {% for from_bucket, row_data in roll_matrix.items() %}
+        <tr>
+            <td><strong>{{ from_bucket }}</strong></td>
+            {% for col in roll_columns %}
+            {% set val = row_data.get(col, 0) %}
+            <td class="right num {% if col == 'Current' and val > 70 %}cell-low{% elif col != 'Current' and val > 10 %}cell-high{% elif val > 5 %}cell-med{% endif %}">{{ "%.2f"|format(val) }}%</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if cure_rate_30 %}
+    <div class="insight" style="border-left-color: #27ae60;">✓ 30-DPD cure rate: {{ "%.1f"|format(cure_rate_30) }}% of loans one month late returned to current. {% if cure_rate_30 > 75 %}This indicates active and effective early intervention.{% endif %}</div>
+    {% endif %}
+</section>
+
+<!-- ══════ Section 5: Geographic Hotspots ══════ -->
+<section>
+    <h2>5. Geographic Risk Hotspots</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">States with delinquency rates above portfolio average ({{ avg_dlq }}%), minimum 500 loans</p>
+    <table>
+        <thead><tr><th>State</th><th class="right">Loans</th><th class="right">UPB ($B)</th><th class="right">DLQ Rate</th><th class="right">vs Portfolio</th><th class="right">Avg FICO</th></tr></thead>
+        <tbody>
+        {% for row in geo_hotspots %}
+        <tr>
+            <td><strong>{{ row.property_state }}</strong></td>
+            <td class="right num">{{ "{:,}".format(row.loans) }}</td>
+            <td class="right num">${{ "%.3f"|format(row.upb_billions) }}B</td>
+            <td class="right num {% if row.dlq_rate_pct > avg_dlq * 1.5 %}cell-high{% else %}cell-med{% endif %}">{{ row.dlq_rate_pct }}%</td>
+            <td class="right num">{{ "%.1f"|format(row.dlq_rate_pct / avg_dlq) }}x</td>
+            <td class="right num">{{ row.avg_fico }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- ══════ Section 6: Risk Segments ══════ -->
+<section>
+    <h2>6. Highest-Risk Loan Segments</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Top 15 segments by model risk score (Model A behavioral segmentation, minimum 30 loans per segment)</p>
+    <table>
+        <thead><tr>
+            <th>Credit Band</th><th>LTV</th><th>Rate</th><th>Vintage</th>
+            <th class="right">Loans</th><th class="right">UPB ($M)</th>
+            <th class="right">Risk Score</th><th class="right">Actual DLQ</th>
+        </tr></thead>
+        <tbody>
+        {% for row in top_segments %}
+        <tr>
+            <td>{{ row.credit_score_band }}</td>
+            <td>{{ row.ltv_bucket }}</td>
+            <td>{{ row.rate_bucket }}</td>
+            <td>{{ row.orig_year }}</td>
+            <td class="right num">{{ "{:,}".format(row.loans) }}</td>
+            <td class="right num">${{ "%.1f"|format(row.total_upb / 1e6) }}M</td>
+            <td class="right num cell-high">{{ row.avg_risk_score }}%</td>
+            <td class="right num {% if row.actual_dlq_rate > 5 %}cell-high{% elif row.actual_dlq_rate > 2 %}cell-med{% endif %}">{{ row.actual_dlq_rate }}%</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if segment_concentration %}
+    <div class="insight">⚠ The top 15 segments represent {{ "{:,}".format(segment_concentration.loans) }} loans (${{ "%.1f"|format(segment_concentration.upb / 1e9) }}B UPB) with an average delinquency rate of {{ "%.1f"|format(segment_concentration.avg_dlq) }}% — {{ "%.1f"|format(segment_concentration.avg_dlq / avg_dlq) }}x the portfolio average.</div>
+    {% endif %}
+</section>
+
+<!-- ══════ Section 7: Predictive Model Summary ══════ -->
+<section>
+    <h2>7. Predictive Risk Model (Origination Features)</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Model B: predicts delinquency likelihood using only borrower and loan characteristics known at origination</p>
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-value num">{{ model_b.auc }}</div>
+            <div class="kpi-label">AUC-ROC</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">{{ model_b.lift_10 }}%</div>
+            <div class="kpi-label">Capture at Top 10%</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">{{ model_b.lift_20 }}%</div>
+            <div class="kpi-label">Capture at Top 20%</div>
+        </div>
+    </div>
+    <h3>Top Delinquency Risk Drivers</h3>
+    <table>
+        <thead><tr><th>#</th><th>Feature</th><th class="right">Importance</th><th>Interpretation</th></tr></thead>
+        <tbody>
+        {% for feat in model_b.features %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><strong>{{ feat.feature }}</strong></td>
+            <td class="right num">{{ feat.importance }}</td>
+            <td style="font-size: 12px; color: #666;">{{ feat.interpretation }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- ══════ Section 8: Recommended Actions ══════ -->
+<section>
+    <h2>8. Recommended Actions</h2>
+    {% if recommendations %}
+    {% for rec in recommendations %}
+    <div class="rec-card">
+        <strong>{{ rec.category }}:</strong> {{ rec.text }}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p style="color: #7f8c8d;">No action items triggered — all metrics within acceptable thresholds.</p>
+    {% endif %}
+</section>
+
+<footer>
+    &copy; 2026 {{ author.name }} — Mortgage Servicing Analytics Platform<br>
+    Data source: Freddie Mac Loan-Level Disclosure, February 2026 release
+</footer>
+</div>
+</body>
+</html>
