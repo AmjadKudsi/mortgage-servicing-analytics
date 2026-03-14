@@ -1,0 +1,113 @@
+08:57:36 | INFO  | ============================================================
+08:57:36 | INFO  | MORTGAGE DELINQUENCY RISK MODEL
+08:57:36 | INFO  | ============================================================
+08:57:36 | INFO  | Loading features from: data/mortgage_analytics.duckdb
+08:57:36 | INFO  |   Rows: 991,354
+08:57:36 | INFO  |   Delinquent: 10,250 (1.03%)
+08:57:36 | INFO  | 
+============================================================
+08:57:36 | INFO  | MODEL B: ORIGINATION RISK PREDICTOR
+08:57:36 | INFO  | ============================================================
+08:57:36 | INFO  | Features: origination-only (no payment history)
+08:57:36 | INFO  | Purpose: predict delinquency from borrower/loan characteristics
+08:57:37 | INFO  |   Prepared [origination]: 29 features (7 num + 21 cat + 1 bin)
+08:57:37 | INFO  |   Target distribution: 0.0103 (1.03%)
+08:57:37 | INFO  |   Leakage check: PASS (no features above 0.95 correlation)
+08:57:38 | INFO  |   Split at loan_age=42: train=522,437 (1.19% DLQ), test=468,917 (0.86% DLQ)
+08:57:38 | INFO  |   Split validity: train has 6,237 DLQ, test has 4,013 DLQ
+08:57:38 | INFO  |   Training logistic_regression...
+08:57:39 | INFO  |     Trained in 1.1s
+08:57:39 | INFO  | 
+  logistic_regression:
+08:57:39 | INFO  |     AUC-ROC:   0.7700
+08:57:39 | INFO  |     Precision: 0.0189
+08:57:39 | INFO  |     Recall:    0.7321
+08:57:39 | INFO  |     F1:        0.0369
+08:57:39 | INFO  |     Lift:
+08:57:39 | INFO  |       Top 1% (4,689 loans) → 323/4,013 (8.0%)
+08:57:39 | INFO  |       Top 5% (23,445 loans) → 1,026/4,013 (25.6%)
+08:57:39 | INFO  |       Top 10% (46,891 loans) → 1,586/4,013 (39.5%)
+08:57:39 | INFO  |       Top 20% (93,783 loans) → 2,359/4,013 (58.8%)
+08:57:39 | INFO  |     Top 5 features:
+08:57:39 | INFO  |       credit_score: 0.7015
+08:57:39 | INFO  |       num_borrowers: 0.4405
+08:57:39 | INFO  |       orig_interest_rate: 0.2779
+08:57:39 | INFO  |       dti: 0.2391
+08:57:39 | INFO  |       loan_age: 0.2128
+08:57:39 | INFO  |   Training random_forest...
+08:57:54 | INFO  |     Trained in 14.5s
+08:57:56 | INFO  | 
+  random_forest:
+08:57:56 | INFO  |     AUC-ROC:   0.7695
+08:57:56 | INFO  |     Precision: 0.0247
+08:57:56 | INFO  |     Recall:    0.5789
+08:57:56 | INFO  |     F1:        0.0474
+08:57:56 | INFO  |     Lift:
+08:57:56 | INFO  |       Top 1% (4,689 loans) → 261/4,013 (6.5%)
+08:57:56 | INFO  |       Top 5% (23,445 loans) → 945/4,013 (23.5%)
+08:57:56 | INFO  |       Top 10% (46,891 loans) → 1,491/4,013 (37.2%)
+08:57:56 | INFO  |       Top 20% (93,783 loans) → 2,319/4,013 (57.8%)
+08:57:56 | INFO  |     Top 5 features:
+08:57:56 | INFO  |       credit_score: 0.2761
+08:57:56 | INFO  |       credit_score_band_Fair (620-679): 0.1028
+08:57:56 | INFO  |       orig_interest_rate: 0.0858
+08:57:56 | INFO  |       loan_age: 0.0830
+08:57:56 | INFO  |       dti: 0.0826
+08:57:56 | INFO  | 
+  Best Model B: logistic_regression (AUC: 0.7700)
+08:57:56 | INFO  | 
+============================================================
+08:57:56 | INFO  | MODEL A: BEHAVIORAL RISK SEGMENTATION
+08:57:56 | INFO  | ============================================================
+08:57:56 | INFO  | Features: origination + payment history (behavioral)
+08:57:56 | INFO  | Purpose: score and rank loan segments by current risk
+08:57:56 | INFO  |   Prepared [behavioral]: 35 features (13 num + 21 cat + 1 bin)
+08:57:56 | INFO  |   Training random_forest...
+08:58:17 | INFO  |     Trained in 20.1s
+08:58:18 | INFO  |   Scored 991,354 loans
+08:58:18 | INFO  |     Mean risk score: 0.0229
+08:58:18 | INFO  |     Median: 0.0053
+08:58:18 | INFO  |     95th percentile: 0.0490
+08:58:18 | INFO  |   Segments (≥30 loans): 164
+08:58:18 | INFO  | 
+  Top 10 riskiest segments:
+08:58:18 | INFO  |          Subprime (<620) |  Medium (61-80) |  5.5% - 6.5% | 2022 | Score:  17.9% | DLQ: 10.64% |     47 loans
+08:58:18 | INFO  |          Subprime (<620) |  Medium (61-80) |        6.5%+ | 2023 | Score:  16.1% | DLQ: 11.11% |     45 loans
+08:58:18 | INFO  |           Fair (620-679) |  Medium (61-80) |        6.5%+ | 2022 | Score:  13.4% | DLQ:  9.34% |    471 loans
+08:58:18 | INFO  |           Fair (620-679) |    High (81-90) |  4.5% - 5.5% | 2016 | Score:  13.3% | DLQ:  6.25% |     32 loans
+08:58:18 | INFO  |           Fair (620-679) | Very High (>90) |  3.5% - 4.5% | 2017 | Score:  12.9% | DLQ:  7.41% |    108 loans
+08:58:18 | INFO  |           Fair (620-679) | Very High (>90) |  4.5% - 5.5% | 2017 | Score:  12.3% | DLQ:  6.06% |     99 loans
+08:58:18 | INFO  |           Fair (620-679) | Very High (>90) |  4.5% - 5.5% | 2016 | Score:  12.1% | DLQ:  5.36% |     56 loans
+08:58:18 | INFO  |          Subprime (<620) |  Medium (61-80) |  3.5% - 4.5% | 2016 | Score:  12.0% | DLQ:  6.38% |     47 loans
+08:58:18 | INFO  |          Subprime (<620) |  Medium (61-80) |  3.5% - 4.5% | 2020 | Score:  11.9% | DLQ:  6.25% |     32 loans
+08:58:18 | INFO  |          Subprime (<620) |  Medium (61-80) |  4.5% - 5.5% | 2017 | Score:  11.7% | DLQ:  6.33% |     79 loans
+08:58:18 | INFO  | 
+  Feature importance (behavioral model):
+08:58:18 | INFO  |     consecutive_current: 0.4296
+08:58:18 | INFO  |     max_dpd_12m: 0.3898
+08:58:18 | INFO  |     latest_credit_score: 0.1124
+08:58:18 | INFO  |     credit_score: 0.0249
+08:58:18 | INFO  |     credit_score_band_Fair (620-679): 0.0110
+08:58:18 | INFO  |     num_borrowers: 0.0055
+08:58:18 | INFO  |     credit_score_band_Good (680-719): 0.0049
+08:58:18 | INFO  |     dti: 0.0046
+08:58:18 | INFO  |     loan_age: 0.0036
+08:58:18 | INFO  |     orig_interest_rate: 0.0034
+08:58:18 | INFO  | 
+============================================================
+08:58:18 | INFO  | SAVING ARTIFACTS
+08:58:18 | INFO  | ============================================================
+08:58:18 | INFO  |   Model B saved: python/ml/model_artifacts/model_b.joblib
+08:58:18 | INFO  |   Model A saved: python/ml/model_artifacts/model_a.joblib
+08:58:18 | INFO  |   Segments saved: python/ml/model_artifacts/risk_segments.csv (164 segments)
+08:58:18 | INFO  |   Report saved: python/ml/model_artifacts/evaluation_report.json
+08:58:18 | INFO  | 
+============================================================
+08:58:18 | INFO  | PIPELINE COMPLETE
+08:58:18 | INFO  | ============================================================
+08:58:18 | INFO  |   Model B (logistic_regression):
+08:58:18 | INFO  |     AUC: 0.7700
+08:58:18 | INFO  |     Lift at 10%: 39.5% capture
+08:58:18 | INFO  |   Model A (behavioral RF):
+08:58:18 | INFO  |     Segments scored: 164
+08:58:18 | INFO  |     Highest risk: Subprime (<620) / Medium (61-80) / 2022 → 10.6% DLQ
