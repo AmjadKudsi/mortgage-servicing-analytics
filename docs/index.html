@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Amjad Kudsi">
+    <meta name="author" content="Amjad Ali Kudsi">
     <meta name="description" content="Data & AI Engineer — Pipelines, intelligent systems, and real-world solutions.">
-    <title>Amjad Kudsi — Data & AI Engineer</title>
+    <title>Amjad Ali — Data & AI Engineer</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" defer></script>
 </head>
@@ -13,331 +13,158 @@
 
 <!-- ═══════ HERO ═══════ -->
 <section class="hero" id="top">
-    <img src="assets/photo.jpg" alt="Amjad Kudsi" class="hero-photo">
-    <h1>Amjad Kudsi</h1>
-    <p class="tagline">Data & AI Engineer focused on building reliable pipelines, intelligent systems, and real-world solutions.</p>
-    <p class="tagline-sub">Explore my projects, experience, and ongoing journey.</p>
-    <p class="location">NYC, New York</p>
+    <div class="theme-toggle" id="themeBtn" title="Toggle dark/light mode">
+        <!-- Moon (visible in dark mode) -->
+        <svg class="theme-toggle-icon" id="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <!-- Sun (visible in light mode) -->
+        <svg class="theme-toggle-icon" id="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </div>
+    <div class="hero-inner">
+        <div class="hero-text">
+            <p class="hero-greeting">Hey, I'm</p>
+            <h1 class="hero-name">Amjad Ali</h1>
+            <p class="hero-tagline">Data & AI Engineer focused on building reliable pipelines, intelligent systems, and real-world solutions.</p>
+            <p class="hero-tagline-sub">Explore my projects, experience, and ongoing journey.</p>
+            <p class="hero-location"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> New York</p>
+        </div>
+        <div class="hero-photo-wrap">
+            <img src="assets/photo.png" alt="Amjad Ali" class="hero-photo">
+        </div>
+    </div>
     <div class="scroll-indicator">scroll</div>
 </section>
 
-<!-- ═══════ NAV ═══════ -->
-<nav class="nav-bar" id="navbar">
+<!-- ═══════ NAV — profile icons swapped here ═══════ -->
+<nav class="nav-bar">
     <ul class="nav-tabs">
         <li class="active" data-tab="projects">Projects</li>
         <li data-tab="journey">Journey</li>
     </ul>
-    <ul class="nav-links">
-        <li><a href="https://linkedin.com/in/amjadkudsi" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="mailto:kudsiamjad@gmail.com">Email</a></li>
-        <li><a href="https://github.com/AmjadKudsi" target="_blank" rel="noopener">GitHub</a></li>
+    <ul class="nav-icons">
+        <li><a href="https://www.linkedin.com/in/amjadkudsi" target="_blank" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+        <li><a href="https://github.com/AmjadKudsi" target="_blank" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a></li>
+        <li><a href="https://codesignal.com/learn/profile/cmahs9glz000kim04b674tjcu" target="_blank" title="CodeSignal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><rect width="24" height="24" rx="4" fill="currentColor" opacity="0.15"/><path d="M7 17V7h2l3 5 3-5h2v10h-2v-6l-3 5-3-5v6z"/></svg></a></li>
+        <li><a href="https://leetcode.com/u/amjadkudsi/" target="_blank" title="LeetCode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg></a></li>
+        <li><a href="https://medium.com/@amjadkudsi" target="_blank" title="Medium"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg></a></li>
+        <li><a href="https://www.kaggle.com/amjadalikudsi" target="_blank" title="Kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.281.18.046.149.034.238-.036.27l-6.555 6.344 6.836 8.507c.095.104.117.208.075.323z"/></svg></a></li>
+        <li><a href="https://share.streamlit.io/user/amjadkudsi" target="_blank" title="Streamlit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.673 11.32L7.67 6.757l4.503-2.283zm4.254 2.157L12 8.502 3.073 13.477l8.927 4.976zM3.073 10.523L12 15.498l8.927-4.975-8.927-4.976z"/></svg></a></li>
+        <li><a href="https://developerbadges.snowflake.com/profile/amjadalikudsi102862/wallet" target="_blank" title="Snowflake Badges"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 1.5l-1 1.7-1-1.7h-2l2 3.5-2 3.5h2l1-1.8 1 1.8h2l-2-3.5 2-3.5zM21 8l-1.7-1 1.7-1v-2l-3.5 2-3.5-2v2l1.8 1-1.8 1v2l3.5-2 3.5 2zM12.5 16.5l-1 1.7-1-1.7h-2l2 3.5L8.5 24h2l1-1.8 1 1.8h2l-2-3.5 2-3.5zM3 8L1.3 7 3 6V4L-.5 6l3.5 2v2l-1.8-1L3 10v2l-3.5-2L3 12z" transform="translate(3,0) scale(0.8)"/></svg></a></li>
+        <li><a href="https://www.hackerrank.com/profile/amjadkudsi" target="_blank" title="HackerRank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1.285 0 9.75 4.886 10.392 6 .645 1.115.645 10.885 0 12S13.287 24 12 24s-9.75-4.885-10.395-6c-.641-1.115-.641-10.885 0-12C2.25 4.886 10.715 0 12 0zm2.295 6.799c-.141 0-.258.115-.258.258v3.875H9.963V7.057c0-.143-.117-.258-.258-.258h-1.2c-.141 0-.258.115-.258.258v9.886c0 .143.117.258.258.258h1.2c.141 0 .258-.115.258-.258v-3.875h4.074v3.875c0 .143.115.258.258.258h1.199c.143 0 .258-.115.258-.258V7.057c0-.143-.115-.258-.258-.258z"/></svg></a></li>
     </ul>
 </nav>
 
 <!-- ═══════ CONTENT ═══════ -->
 <div class="content">
 
-<!-- ── PROJECTS TAB ── -->
 <div class="tab-panel active" id="tab-projects">
-
-    <!-- FEATURED: Mortgage Analytics -->
-    <div class="section-header">
-        <h2>Featured Project</h2>
-    </div>
-
-    <div class="featured">
+    <div class="section-header reveal"><h2>Featured Project</h2></div>
+    <div class="featured reveal">
         <div class="featured-inner">
-            <div class="featured-image">
-                <img src="assets/tableau_preview.png" alt="Mortgage Analytics Dashboard">
-            </div>
+            <div class="featured-image"><img src="assets/tableau_preview.png" alt="Mortgage Analytics Dashboard"></div>
             <div class="featured-body">
                 <span class="featured-label">Mortgage Servicing Analytics Platform</span>
                 <h3>Loan Performance Analytics & Risk Intelligence</h3>
                 <p>End-to-end analytics platform built on 992K Freddie Mac loans ($248B portfolio) spanning 11 origination years. SQL-powered analytical engine with automated data quality checks, interactive Tableau dashboards, ML-based risk scoring, and auto-generated executive reports.</p>
-                <div class="stat-badges">
-                    <span class="stat-badge">992K loans</span>
-                    <span class="stat-badge">$248B portfolio</span>
-                    <span class="stat-badge">11 vintages</span>
-                    <span class="stat-badge">8 SQL queries</span>
-                </div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <a href="dashboard.html" class="btn btn-primary">Explore Live Dashboard →</a>
-                    <a href="https://github.com/AmjadKudsi/mortgage-servicing-analytics" target="_blank" class="btn btn-outline">View Code</a>
-                </div>
+                <div class="stat-badges"><span class="stat-badge">992K loans</span><span class="stat-badge">$248B portfolio</span><span class="stat-badge">11 vintages</span><span class="stat-badge">8 SQL queries</span></div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;"><a href="dashboard.html" class="btn btn-primary">Explore Live Dashboard →</a><a href="https://github.com/AmjadKudsi/mortgage-servicing-analytics" target="_blank" class="btn btn-outline">View Code</a></div>
             </div>
         </div>
     </div>
 
-    <!-- ML DEMO -->
-    <div class="section-header" style="margin-top: 40px;">
-        <h2>ML Risk Model — Results Explorer</h2>
-        <p>Dual-model approach: origination predictor (honest AUC) + behavioral segmentation (risk ranking)</p>
+    <div class="section-header reveal" style="margin-top:60px;"><h2>ML Risk Model — Results Explorer</h2><p>Dual-model approach: origination predictor (honest AUC) + behavioral segmentation (risk ranking)</p></div>
+    <div class="ml-demo reveal">
+        <div class="ml-tabs"><button class="ml-tab active" data-ml="overview">Model Performance</button><button class="ml-tab" data-ml="features">Risk Drivers</button><button class="ml-tab" data-ml="segments">Risk Segments</button><button class="ml-tab" data-ml="limitations">Shortcomings & Improvements</button></div>
+        <div class="ml-panel active" id="ml-overview"><div class="ml-kpi-row"><div class="ml-kpi"><div class="value" id="kpi-auc">—</div><div class="label">AUC-ROC (Origination Model)</div></div><div class="ml-kpi"><div class="value" id="kpi-lift10">—</div><div class="label">Capture at Top 10%</div></div><div class="ml-kpi"><div class="value" id="kpi-lift20">—</div><div class="label">Capture at Top 20%</div></div><div class="ml-kpi"><div class="value" id="kpi-segments">—</div><div class="label">Risk Segments Scored</div></div></div><div class="ml-chart" id="lift-chart"></div><div class="ml-note">Model B uses only origination features (credit score, LTV, DTI, interest rate, loan age) — no payment history. This ensures genuine predictive capability without data leakage.</div></div>
+        <div class="ml-panel" id="ml-features"><div class="ml-chart" id="feature-chart"></div><div class="ml-note">Feature importance from the origination-only model. Credit score is the dominant predictor — consistent with fundamental credit risk theory.</div></div>
+        <div class="ml-panel" id="ml-segments"><p style="font-size:16px;color:var(--text-secondary);margin-bottom:16px;">Top risk segments from the behavioral model. Segments with highest concentration of delinquent loans.</p><div style="overflow-x:auto;"><table class="ml-table"><thead><tr><th>Credit Band</th><th>LTV</th><th>Rate</th><th>Vintage</th><th style="text-align:right">Loans</th><th style="text-align:right">Risk Score</th><th style="text-align:right">Actual DLQ</th></tr></thead><tbody id="segments-body"></tbody></table></div></div>
+        <div class="ml-panel" id="ml-limitations"><div style="display:grid;gap:16px;"><div class="ml-note" style="border-left-color:#f39c12;"><strong>Single-snapshot limitation.</strong><br>The dataset is a single monthly snapshot, not a time series. True forward prediction requires sequential monthly data. The origination model predicts current delinquency status from borrower profile — valuable for risk stratification but not a deployment-ready forecasting tool.</div><div class="ml-note" style="border-left-color:#f39c12;"><strong>Class imbalance (99:1).</strong><br>Only ~1% of loans are delinquent. Precision is inherently low. Addressed with balanced class weights and evaluated using lift metrics rather than raw precision.</div><div class="ml-note" style="border-left-color:#2ecc71;"><strong>What would improve it.</strong><br>Monthly time-series data, additional features (employment, payment amounts, forbearance history), gradient boosting ensembles, and a calibration layer for dollar-loss estimation.</div><div class="ml-note"><strong>Why the dual-model design matters.</strong><br>The first attempt produced AUC = 1.0 due to data leakage. The redesign separates Model B (origination, AUC ~0.77) for honest prediction from Model A (behavioral) for segmentation. This distinction is what mortgage analytics teams value.</div></div></div>
     </div>
 
-    <div class="ml-demo">
-        <div class="ml-tabs">
-            <button class="ml-tab active" data-ml="overview">Model Performance</button>
-            <button class="ml-tab" data-ml="features">Risk Drivers</button>
-            <button class="ml-tab" data-ml="segments">Risk Segments</button>
-            <button class="ml-tab" data-ml="limitations">Shortcomings & Improvements</button>
-        </div>
-
-        <!-- Panel: Overview -->
-        <div class="ml-panel active" id="ml-overview">
-            <div class="ml-kpi-row">
-                <div class="ml-kpi"><div class="value" id="kpi-auc">—</div><div class="label">AUC-ROC (Origination Model)</div></div>
-                <div class="ml-kpi"><div class="value" id="kpi-lift10">—</div><div class="label">Capture at Top 10%</div></div>
-                <div class="ml-kpi"><div class="value" id="kpi-lift20">—</div><div class="label">Capture at Top 20%</div></div>
-                <div class="ml-kpi"><div class="value" id="kpi-segments">—</div><div class="label">Risk Segments Scored</div></div>
-            </div>
-            <div class="ml-chart" id="lift-chart"></div>
-            <div class="ml-note">Model B uses only origination features (credit score, LTV, DTI, interest rate, loan age) — no payment history. This ensures genuine predictive capability without data leakage.</div>
-        </div>
-
-        <!-- Panel: Features -->
-        <div class="ml-panel" id="ml-features">
-            <div class="ml-chart" id="feature-chart"></div>
-            <div class="ml-note">Feature importance from the origination-only model. Credit score is the dominant predictor — a finding consistent with fundamental credit risk theory.</div>
-        </div>
-
-        <!-- Panel: Segments -->
-        <div class="ml-panel" id="ml-segments">
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Top risk segments from the behavioral model (Model A). Segments with highest concentration of delinquent loans.</p>
-            <div style="overflow-x: auto;">
-                <table class="ml-table" id="segments-table">
-                    <thead><tr>
-                        <th>Credit Band</th><th>LTV</th><th>Rate</th><th>Vintage</th>
-                        <th style="text-align:right">Loans</th><th style="text-align:right">Risk Score</th><th style="text-align:right">Actual DLQ</th>
-                    </tr></thead>
-                    <tbody id="segments-body"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Panel: Limitations -->
-        <div class="ml-panel" id="ml-limitations">
-            <div style="display: grid; gap: 12px;">
-                <div class="ml-note" style="border-left-color: var(--warning);">
-                    <strong style="color: var(--text-primary);">Single-snapshot limitation.</strong><br>
-                    The dataset is a single monthly snapshot, not a time series. True forward prediction (train on month N, predict month N+3) requires sequential monthly data. The origination model predicts current delinquency status from borrower profile — valuable for risk stratification but not a deployment-ready forecasting tool.
-                </div>
-                <div class="ml-note" style="border-left-color: var(--warning);">
-                    <strong style="color: var(--text-primary);">Class imbalance (99:1).</strong><br>
-                    Only ~1% of loans are delinquent. Precision is inherently low (many false positives). This is addressed with balanced class weights and evaluated using lift metrics rather than raw precision. In production, the model would rank loans for prioritized outreach, not make binary approve/deny decisions.
-                </div>
-                <div class="ml-note" style="border-left-color: var(--success);">
-                    <strong style="color: var(--text-primary);">What would improve it.</strong><br>
-                    Monthly time-series data would enable true forecasting. Additional features (employment status, payment amounts, forbearance history) would increase AUC by an estimated 5-10 points. Ensemble methods or gradient boosting could capture more complex risk interactions. A calibration layer would make probability outputs more reliable for dollar-loss estimation.
-                </div>
-                <div class="ml-note" style="border-left-color: var(--accent);">
-                    <strong style="color: var(--text-primary);">Why the dual-model design matters.</strong><br>
-                    The first attempt produced AUC = 1.0 due to data leakage — behavioral features (payment history) encoded the target variable. Rather than hiding this, the redesign separates concerns: Model B uses origination features for honest prediction (AUC ~0.77), Model A uses behavioral features for risk segmentation. This distinction — knowing when a model is predicting vs. merely classifying — is the kind of analytical judgment mortgage analytics teams value.
-                </div>
-            </div>
+    <div class="section-header reveal" style="margin-top:60px;"><h2>Other Projects</h2></div>
+    <div class="projects-scroll-container reveal">
+        <div class="projects-scroll">
+            <a href="https://github.com/AmjadKudsi/spotify-live-refresh" target="_blank" class="project-card"><img src="assets/proj_spotify.png" class="project-card-img" alt="Spotify"><div class="project-card-body"><h4>Spotify Live Top 200 Dashboard</h4><p>Power BI data intelligence platform — historical and real-time analytics engine built with API pipelines and Power BI modeling.</p><div class="project-card-tags"><span class="tag">Power BI</span><span class="tag">REST API</span><span class="tag">CI/CD</span><span class="tag">DAX</span></div></div></a>
+            <a href="https://github.com/AmjadKudsi/StatGuard_agent" target="_blank" class="project-card"><img src="assets/proj_statguard.png" class="project-card-img" alt="StatGuard"><div class="project-card-body"><h4>StatGuard: Security Patch Assistant</h4><p>Can a static-only LLM-based agent safely assist with secure code review without ever executing the target program?</p><div class="project-card-tags"><span class="tag">Gemini 2.5</span><span class="tag">Bandit</span><span class="tag">Multi-Agent</span></div></div></a>
+            <a href="https://github.com/AmjadKudsi/Tic-Tac-Tourney" target="_blank" class="project-card"><img src="assets/proj_tictac.png" class="project-card-img" alt="Tic-Tac-Tourney"><div class="project-card-body"><h4>Tic-Tac-Tourney</h4><p>Game logic with Random, Minimax, and Heuristic AI agents competing against humans in a round-robin tournament.</p><div class="project-card-tags"><span class="tag">AI Agents</span><span class="tag">Minimax</span><span class="tag">Alpha-Beta</span></div></div></a>
+            <a href="https://github.com/Intro-to-Data-Science-Team-10/Analysis-of-Mental-Health-Dynamics" target="_blank" class="project-card"><img src="assets/proj_psych.png" class="project-card-img" alt="Psychometric"><div class="project-card-body"><h4>Psychometric Severity Prediction</h4><p>Understanding how personality traits and demographics influence mental health outcomes using ML classification.</p><div class="project-card-tags"><span class="tag">Logistic Regression</span><span class="tag">SVM</span><span class="tag">ANOVA</span></div></div></a>
+            <a href="https://github.com/AmjadKudsi/Meta_llama-chatbot" target="_blank" class="project-card"><img src="assets/default_project.png" class="project-card-img" alt="RAG Chatbot"><div class="project-card-body"><h4>Evidence-Grounded RAG Chatbot</h4><p>RAG pipeline using LlamaIndex and FAISS for document-grounded Q&A on IRS tax publications without external APIs.</p><div class="project-card-tags"><span class="tag">LlamaIndex</span><span class="tag">FAISS</span><span class="tag">Pydantic</span><span class="tag">RAGAS</span></div></div></a>
         </div>
     </div>
-
-    <!-- OTHER PROJECTS -->
-    <div class="section-header" style="margin-top: 40px;">
-        <h2>Other Projects</h2>
-    </div>
-
-    <div class="projects-scroll-container">
-        <div class="projects-scroll" id="projects-scroll">
-            <a href="https://github.com/AmjadKudsi/spotify-live-refresh" target="_blank" class="project-card">
-                <img src="assets/proj_spotify.png" class="project-card-img" alt="Spotify Dashboard">
-                <div class="project-card-body">
-                    <h4>Spotify Live Top 200 Dashboard</h4>
-                    <p>Power BI data intelligence platform — historical and real-time analytics engine built with API pipelines and Power BI modeling.</p>
-                    <div class="project-card-tags">
-                        <span class="tag">Power BI</span><span class="tag">REST API</span><span class="tag">CI/CD</span><span class="tag">DAX</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://github.com/AmjadKudsi/StatGuard_agent" target="_blank" class="project-card">
-                <img src="assets/proj_statguard.png" class="project-card-img" alt="StatGuard">
-                <div class="project-card-body">
-                    <h4>StatGuard: Security Patch Assistant</h4>
-                    <p>Can a static-only LLM-based agent safely assist with secure code review without ever executing the target program?</p>
-                    <div class="project-card-tags">
-                        <span class="tag">Gemini 2.5</span><span class="tag">Bandit</span><span class="tag">Multi-Agent</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://github.com/AmjadKudsi/Tic-Tac-Tourney" target="_blank" class="project-card">
-                <img src="assets/proj_tictac.png" class="project-card-img" alt="Tic-Tac-Tourney">
-                <div class="project-card-body">
-                    <h4>Tic-Tac-Tourney</h4>
-                    <p>Game logic with Random, Minimax, and Heuristic AI agents competing against humans in a round-robin tournament.</p>
-                    <div class="project-card-tags">
-                        <span class="tag">AI Agents</span><span class="tag">Minimax</span><span class="tag">Alpha-Beta</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://github.com/Intro-to-Data-Science-Team-10/Analysis-of-Mental-Health-Dynamics" target="_blank" class="project-card">
-                <img src="assets/proj_psych.png" class="project-card-img" alt="Psychometric Prediction">
-                <div class="project-card-body">
-                    <h4>Psychometric Severity Prediction</h4>
-                    <p>Understanding how personality traits and demographics influence mental health outcomes using ML classification.</p>
-                    <div class="project-card-tags">
-                        <span class="tag">Logistic Regression</span><span class="tag">SVM</span><span class="tag">ANOVA</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://github.com/AmjadKudsi/Meta_llama-chatbot" target="_blank" class="project-card">
-                <img src="assets/default_project.png" class="project-card-img" alt="RAG Chatbot">
-                <div class="project-card-body">
-                    <h4>Evidence-Grounded RAG Chatbot</h4>
-                    <p>RAG pipeline using LlamaIndex and FAISS for document-grounded Q&A on IRS tax publications without external APIs.</p>
-                    <div class="project-card-tags">
-                        <span class="tag">LlamaIndex</span><span class="tag">FAISS</span><span class="tag">Pydantic</span><span class="tag">RAGAS</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
 </div>
 
 <!-- ── JOURNEY TAB ── -->
 <div class="tab-panel" id="tab-journey">
-
-    <div class="section-header">
-        <h2>Career & Education</h2>
+    <div class="section-header reveal"><h2>Career & Education</h2></div>
+    <div class="timeline reveal">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">July 2025 — Present</div><div class="timeline-title">Research Assistant</div><div class="timeline-company">University of New Haven · West Haven, CT</div><div class="timeline-desc">LLM-assisted software security research — vulnerability detection, multilingual code analysis across 6 languages, and explainable automated repair workflows for real codebases.</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">August 2023 — May 2025</div><div class="timeline-title">MS in Data Science (STEM)</div><div class="timeline-company">University of New Haven</div><div class="timeline-desc">AWS (Athena, Glue, S3, Lambda), Power BI, NLP, Math for Data Scientists.</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">June 2024 — August 2024</div><div class="timeline-title">Solutions Engineering Intern</div><div class="timeline-company">Bitwise Inc. · Schaumburg, IL</div><div class="timeline-desc">Built Python GenAI service with LangChain orchestration, multi-LLM routing, and SQL-to-PySpark conversion pipeline. Led cross-team final presentation across frontend, backend, and GenAI tracks.</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">August 2021 — August 2023</div><div class="timeline-title">Senior Analyst</div><div class="timeline-company">Capgemini</div><div class="timeline-desc">Fortune 50 licensing analytics — 50+ Snowflake SQL scripts, ETL migration from Informatica to AWS/Snowflake, end-to-end data validation across S3, DB2, and Snowflake.</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">March 2021 — May 2021</div><div class="timeline-title">Data Analyst Intern</div><div class="timeline-company">DevTown (Shape AI)</div><div class="timeline-desc">Supervised ML models on labeled datasets — 89.5% classification accuracy, 92.9% fraud recall. Deployed regression model as interactive web application.</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-date">August 2017 — May 2021</div><div class="timeline-title">BE in Electronics & Telecommunication</div><div class="timeline-company">University of Pune</div><div class="timeline-desc">AI, Machine Learning, Data Structures & Algorithms, OOP, SQL.</div></div></div>
     </div>
 
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-date">July 2025 — Present</div>
-            <div class="timeline-title">Research Assistant</div>
-            <div class="timeline-company">University of New Haven · West Haven, CT</div>
-            <div class="timeline-desc">LLM-assisted software security research — vulnerability detection, multilingual code analysis across 6 languages, and explainable automated repair workflows for real codebases.</div>
+    <!-- CREDENTIALS & BADGES -->
+    <div class="badges-section reveal">
+        <div class="section-header"><h2>Credentials & Badges</h2></div>
+
+        <div class="badges-tier-label">Professional Certifications</div>
+        <!-- Oracle certs -->
+        <div class="badges-row">
+            <div class="cert-card"><img src="assets/badges/oracle_genai.png" alt="OCI GenAI"><div class="cert-label">OCI Generative AI Professional</div></div>
+            <div class="cert-card"><img src="assets/badges/oracle_vector.png" alt="OCI Vector Search"><div class="cert-label">OCI AI Vector Search Professional</div></div>
+            <div class="cert-card"><img src="assets/badges/oracle_autodb.png" alt="OCI Auto DB"><div class="cert-label">OCI Autonomous Database Professional</div></div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-date">June 2024 — August 2024</div>
-            <div class="timeline-title">Solutions Engineering Intern</div>
-            <div class="timeline-company">Bitwise Inc. · Schaumburg, IL</div>
-            <div class="timeline-desc">Built Python GenAI service with LangChain orchestration, multi-LLM routing, and SQL-to-PySpark conversion pipeline. Led cross-team final presentation across frontend, backend, and GenAI tracks.</div>
+        <!-- Azure badges -->
+        <div class="badges-row" style="margin-top:18px;">
+            <div class="badge-card-lg"><img src="assets/badges/azure_fundamentals.png" alt="Azure AZ-900"><div class="badge-label">Azure Fundamentals (AZ-900)</div></div>
+            <div class="badge-card-lg"><img src="assets/badges/azure_data.png" alt="Azure DP-900"><div class="badge-label">Azure Data Fundamentals (DP-900)</div></div>
+            <div class="badge-card-lg"><img src="assets/badges/azure_ai.png" alt="Azure AI-900"><div class="badge-label">Azure AI Fundamentals (AI-900)</div></div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-date">August 2021 — August 2023</div>
-            <div class="timeline-title">Senior Analyst</div>
-            <div class="timeline-company">Capgemini</div>
-            <div class="timeline-desc">Fortune 50 licensing analytics — 50+ Snowflake SQL scripts, ETL migration from Informatica to AWS/Snowflake, end-to-end data validation across S3, DB2, and Snowflake.</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">March 2021 — May 2021</div>
-            <div class="timeline-title">Data Analyst Intern</div>
-            <div class="timeline-company">DevTown (Shape AI)</div>
-            <div class="timeline-desc">Supervised ML models on labeled datasets — 89.5% classification accuracy, 92.9% fraud recall. Deployed regression model as interactive web application.</div>
+        <!-- HR SQL Advanced cert + Google Kaggle cert — 2.5x bigger -->
+        <div class="badges-row" style="margin-top:18px;">
+            <div class="cert-card-xl"><img src="assets/badges/hr_sql_advanced.png" alt="HackerRank SQL Advanced"><div class="cert-label">HackerRank SQL (Advanced) Certificate</div></div>
+            <div class="cert-card-xl"><img src="assets/badges/google_kaggle_ai.png" alt="Google Kaggle AI Agents"><div class="cert-label">Google/Kaggle 5-Day AI Agents Intensive</div></div>
         </div>
 
-        <div style="margin-top: 36px;"></div>
-
-        <div class="timeline-item">
-            <div class="timeline-date">August 2023 — May 2025</div>
-            <div class="timeline-title">MS in Data Science (STEM)</div>
-            <div class="timeline-company">University of New Haven</div>
-            <div class="timeline-desc">AWS (Athena, Glue, S3, Lambda), Power BI, NLP, Math for Data Scientists.</div>
+        <div class="badges-tier-label">Platform Achievements</div>
+        <div class="badges-row">
+            <div class="badge-card-md"><img src="assets/badges/snowflake_de.png" alt="Snowflake DE"><div class="badge-label">Snowflake Data Engineering Bootcamp</div></div>
+            <div class="badge-card-md"><img src="assets/badges/snowflake_genai.png" alt="Snowflake GenAI"><div class="badge-label">Snowflake Gen AI Bootcamp</div></div>
+            <div class="badge-card-md"><img src="assets/badges/ms_ai_skillsfest.png" alt="MS AI Skills Fest"><div class="badge-label">Microsoft AI Skills Fest (GWR)</div></div>
+            <div class="badge-card-md"><img src="assets/badges/codesignal_streak.png" alt="CodeSignal Streak"><div class="badge-label"><span class="live-badge"><span class="live-dot"></span> CodeSignal Streak — 244 days</span></div></div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-date">August 2017 — May 2021</div>
-            <div class="timeline-title">BE in Electronics & Telecommunication</div>
-            <div class="timeline-company">University of Pune</div>
-            <div class="timeline-desc">AI, Machine Learning, Data Structures & Algorithms, OOP, SQL.</div>
+
+        <div class="badges-tier-label">Coding Badges</div>
+        <div class="badges-row">
+            <div class="badge-card-lc"><img src="assets/badges/leetcode_sql50.png" alt="LeetCode SQL50"><div class="badge-label">LeetCode SQL 50</div></div>
+            <div class="badge-card-lc"><img src="assets/badges/leetcode_pandas15.png" alt="LeetCode Pandas15"><div class="badge-label">LeetCode Pandas 15</div></div>
+            <div class="badge-card-sm"><img src="assets/badges/hr_sql_gold.png" alt="HR SQL Gold"><div class="badge-label">HackerRank SQL Gold</div></div>
+            <div class="badge-card-sm"><img src="assets/badges/hr_30days_gold.png" alt="HR 30-Day Gold"><div class="badge-label">HackerRank 30 Days Gold</div></div>
+        </div>
+
+        <div class="tools-display" style="margin-top:48px;">
+            <div class="badges-tier-label">Tools & Technologies</div>
+            <img src="assets/badges/codesignal_tools.png" alt="CodeSignal Tools">
+            <div class="tools-caption">Practiced on CodeSignal</div>
         </div>
     </div>
-
-    <div class="section-header" style="margin-top: 40px;">
-        <h2>Skills</h2>
-    </div>
-
-    <div class="skills-grid">
-        <div class="skill-group">
-            <h4>Languages</h4>
-            <div class="skill-tags">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">Bash</span>
-            </div>
-        </div>
-        <div class="skill-group">
-            <h4>Cloud & Data</h4>
-            <div class="skill-tags">
-                <span class="skill-tag">AWS</span>
-                <span class="skill-tag">Snowflake</span>
-                <span class="skill-tag">DuckDB</span>
-                <span class="skill-tag">Oracle</span>
-                <span class="skill-tag">MongoDB</span>
-                <span class="skill-tag">PySpark</span>
-            </div>
-        </div>
-        <div class="skill-group">
-            <h4>Analytics & BI</h4>
-            <div class="skill-tags">
-                <span class="skill-tag">Tableau</span>
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">DAX</span>
-                <span class="skill-tag">Streamlit</span>
-                <span class="skill-tag">Excel</span>
-            </div>
-        </div>
-        <div class="skill-group">
-            <h4>ML & AI</h4>
-            <div class="skill-tags">
-                <span class="skill-tag">scikit-learn</span>
-                <span class="skill-tag">LangChain</span>
-                <span class="skill-tag">RAG Pipelines</span>
-                <span class="skill-tag">FAISS</span>
-                <span class="skill-tag">Transformers</span>
-                <span class="skill-tag">TensorFlow</span>
-            </div>
-        </div>
-        <div class="skill-group">
-            <h4>DevOps & Tools</h4>
-            <div class="skill-tags">
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">GitHub Actions</span>
-                <span class="skill-tag">CI/CD</span>
-                <span class="skill-tag">Azure DevOps</span>
-                <span class="skill-tag">Docker</span>
-            </div>
-        </div>
-        <div class="skill-group">
-            <h4>Certifications</h4>
-            <div class="skill-tags">
-                <span class="skill-tag">Azure AZ-900</span>
-                <span class="skill-tag">Azure DP-900</span>
-                <span class="skill-tag">Azure AI-900</span>
-                <span class="skill-tag">OCI GenAI</span>
-                <span class="skill-tag">OCI Vector Search</span>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 </div>
 
-<!-- ═══════ FOOTER ═══════ -->
+<!-- ═══════ FOOTER — text links ═══════ -->
 <footer class="footer">
     <ul class="footer-links">
-        <li><a href="https://linkedin.com/in/amjadkudsi" target="_blank">LinkedIn</a></li>
-        <li><a href="https://github.com/AmjadKudsi" target="_blank">GitHub</a></li>
-        <li><a href="mailto:amjadkudsi@gmail.com">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/amjadkudsi" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/AmjadKudsi" target="_blank">Github</a></li>
     </ul>
-    <p class="copy">&copy; 2026 Amjad Kudsi · NYC, New York</p>
+    <div class="footer-email"><a href="mailto:kudsiamjad@gmail.com">kudsiamjad@gmail.com</a></div>
+    <div class="footer-location">New York</div>
+    <p class="copy">&copy; 2026 Amjad Ali Kudsi</p>
 </footer>
 
 <script src="app.js"></script>
 <script src="ml-demo.js" defer></script>
-<!-- GoatCounter: replace with your actual script tag -->
-<script data-goatcounter="https://amjadkudsi.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
