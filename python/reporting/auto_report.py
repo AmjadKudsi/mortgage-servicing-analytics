@@ -25,7 +25,7 @@ from utils import load_config
 from sql_runner import run_query, run_query_string
 
 
-# Feature interpretation map for Model B
+# Feature interpretation map for OriginRisk
 FEATURE_INTERPRETATIONS = {
     "credit_score": "Lower FICO scores strongly predict higher delinquency risk",
     "num_borrowers": "Single-borrower loans carry more risk than co-borrower loans",
@@ -191,13 +191,13 @@ def build_report_data(db_path, ml_artifacts_dir, config):
         data["top_segments"] = []
         data["segment_concentration"] = None
 
-    # ── Section 7: Model B Summary ──
+    # ── Section 7: OriginRisk Summary ──
     eval_path = os.path.join(ml_artifacts_dir, "evaluation_report.json")
     if os.path.exists(eval_path):
         with open(eval_path) as f:
             eval_data = json.load(f)
 
-        # Find the best Model B result
+        # Find the best OriginRisk result
         model_b_data = eval_data.get("model_b", {}).get("models", {})
         best_model = None
         best_auc = -1
@@ -292,7 +292,7 @@ def _generate_recommendations(data):
     if mb.get("lift_20") and mb["lift_20"] != "N/A":
         recs.append({
             "category": "Risk Scoring Opportunity",
-            "text": f"The origination risk model captures {mb['lift_20']}% of "
+            "text": f"The the Origination Scoring Model captures {mb['lift_20']}% of "
                     f"delinquencies in the top 20% of scored loans. Deploying "
                     f"this model for proactive outreach could significantly "
                     f"improve early intervention targeting."

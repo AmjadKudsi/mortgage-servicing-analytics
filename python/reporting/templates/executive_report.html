@@ -177,7 +177,7 @@
 <!-- ══════ Section 6: Risk Segments ══════ -->
 <section>
     <h2>6. Highest-Risk Loan Segments</h2>
-    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Top 15 segments by model risk score (Model A behavioral segmentation, minimum 30 loans per segment)</p>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Top 15 segments by model risk score (SegmentIQ behavioral segmentation, minimum 30 loans per segment)</p>
     <table>
         <thead><tr>
             <th>Credit Band</th><th>LTV</th><th>Rate</th><th>Vintage</th>
@@ -206,8 +206,8 @@
 
 <!-- ══════ Section 7: Predictive Model Summary ══════ -->
 <section>
-    <h2>7. Predictive Risk Model (Origination Features)</h2>
-    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Model B: predicts delinquency likelihood using only borrower and loan characteristics known at origination</p>
+    <h2>7. Origination Scoring Model (OriginRisk)</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">OriginRisk: predicts delinquency likelihood using only borrower and loan characteristics known at origination</p>
     <div class="kpi-row">
         <div class="kpi-card">
             <div class="kpi-value num">{{ model_b.auc }}</div>

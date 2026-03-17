@@ -4,7 +4,8 @@
 
 # ── Raw & processed data (too large + proprietary) ──
 data/raw/
-data/clean/
+#data/clean/
+data/clean/tableau/loans_detail.csv
 data/*.duckdb
 data/*.duckdb.wal
 *.parquet
@@ -13,7 +14,7 @@ data/*.duckdb.wal
 reports/*.html
 
 # ── ML model artifacts ──
-python/ml/model_artifacts/*.joblib
+#python/ml/model_artifacts/*.joblib
 python/ml/model_artifacts/*.pkl
 
 # ── Python ──
