@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Quality Report — Mortgage Servicing Analytics</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f6fa; color: #2c3e50; line-height: 1.5; padding: 24px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 22px; font-weight: 600; color: #1a2332; margin-bottom: 4px; }
+    .subtitle { font-size: 13px; color: #7f8c8d; margin-bottom: 24px; }
+    .overall-badge { display: inline-block; padding: 4px 16px; border-radius: 4px; font-weight: 600; font-size: 14px; margin-left: 12px; vertical-align: middle; }
+    .badge-pass { background: #d5f5e3; color: #1e8449; }
+    .badge-warn { background: #fef9e7; color: #b7950b; }
+    .badge-fail { background: #fadbd8; color: #922b21; }
+    section { background: #fff; border-radius: 6px; padding: 20px 24px; margin-bottom: 16px; border: 1px solid #e8e8e8; }
+    section h2 { font-size: 15px; font-weight: 600; color: #1a2332; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 8px 10px; background: #f8f9fa; color: #555; font-weight: 600; border-bottom: 2px solid #e0e0e0; }
+    td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; }
+    tr:hover { background: #fafbfc; }
+    .status { display: inline-block; padding: 2px 10px; border-radius: 3px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
+    .status-pass { background: #d5f5e3; color: #1e8449; }
+    .status-warn { background: #fef9e7; color: #b7950b; }
+    .status-fail { background: #fadbd8; color: #922b21; }
+    .kpi-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .kpi-card { flex: 1; min-width: 140px; background: #f8f9fa; border-radius: 5px; padding: 12px 16px; border: 1px solid #eee; }
+    .kpi-value { font-size: 20px; font-weight: 700; color: #1a2332; }
+    .kpi-label { font-size: 11px; color: #7f8c8d; margin-top: 2px; }
+    .bar { display: inline-block; height: 8px; border-radius: 4px; vertical-align: middle; margin-left: 6px; }
+    .bar-fill { background: #3498db; }
+    .bar-bg { background: #ecf0f1; width: 100px; position: relative; display: inline-block; height: 8px; border-radius: 4px; vertical-align: middle; margin-left: 6px; }
+    .bar-inner { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; background: #3498db; }
+    .note { font-size: 12px; color: #95a5a6; margin-top: 8px; font-style: italic; }
+    .num { font-variant-numeric: tabular-nums; }
+    .right { text-align: right; }
+    footer { text-align: center; color: #bbb; font-size: 11px; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Data Quality Report
+    <span class="overall-badge badge-pass">PASS</span>
+</h1>
+<p class="subtitle">Generated: 2026-03-13 08:39:29 | Database: data/mortgage_analytics.duckdb</p>
+
+<!-- ── Section 1: Load Summary ── -->
+<section>
+    <h2>1. Load Summary</h2>
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-value num">992,289</div>
+            <div class="kpi-label">Total Loans</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">$247.7B</div>
+            <div class="kpi-label">Total UPB</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">11</div>
+            <div class="kpi-label">Pools Loaded</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">54</div>
+            <div class="kpi-label">States Covered</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">2014–2024</div>
+            <div class="kpi-label">Vintage Range</div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Section 2: Completeness ── -->
+<section>
+    <h2>2. Completeness Assessment</h2>
+    <table>
+        <thead><tr><th>Column</th><th class="right">Null %</th><th class="right">Threshold</th><th>Status</th><th>Distribution</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td><code>loan_id</code></td>
+            <td class="right num">0.0%</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.0%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>credit_score</code></td>
+            <td class="right num">0.036%</td>
+            <td class="right num">5.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.036%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>ltv</code></td>
+            <td class="right num">0.0%</td>
+            <td class="right num">5.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.0%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>dti</code></td>
+            <td class="right num">0.019%</td>
+            <td class="right num">10.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.019%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>current_upb</code></td>
+            <td class="right num">0.0%</td>
+            <td class="right num">2.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.0%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>delinquency_status</code></td>
+            <td class="right num">0.0%</td>
+            <td class="right num">1.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.0%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>property_state</code></td>
+            <td class="right num">0.0%</td>
+            <td class="right num">10.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.0%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>orig_interest_rate</code></td>
+            <td class="right num">0.0%</td>
+            <td class="right num">10.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.0%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>payment_history</code></td>
+            <td class="right num">0.0%</td>
+            <td class="right num">10.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.0%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><code>current_credit_score</code></td>
+            <td class="right num">0.705%</td>
+            <td class="right num">10.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td>
+                <span class="bar-bg"><span class="bar-inner" style="width: 0.705%; background: #27ae60;"></span></span>
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
+</section>
+
+<!-- ── Section 3: Validity ── -->
+<section>
+    <h2>3. Validity Checks</h2>
+    <table>
+        <thead><tr><th>Check</th><th class="right">Violations</th><th class="right">% of Total</th><th>Status</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td>Credit score outside 300–850</td>
+            <td class="right num">0</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td>LTV outside 1–200</td>
+            <td class="right num">0</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td>Interest rate outside 0.1–15%</td>
+            <td class="right num">0</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td>Negative current UPB</td>
+            <td class="right num">0</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td>Empty property state</td>
+            <td class="right num">0</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td>Payment history shorter than 10 chars</td>
+            <td class="right num">0</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        </tbody>
+    </table>
+</section>
+
+<!-- ── Section 4: Consistency ── -->
+<section>
+    <h2>4. Consistency Checks</h2>
+    <table>
+        <thead><tr><th>Check</th><th class="right">Violations</th><th class="right">% of Total</th><th>Status</th><th>Note</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td>Current UPB exceeds original amount (performing loans)</td>
+            <td class="right num">3,815</td>
+            <td class="right num">0.384%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td style="font-size:12px; color:#888;">May occur for loans with capitalized arrearages after modification</td>
+        </tr>
+        
+        <tr>
+            <td>Duplicate loan IDs</td>
+            <td class="right num">0</td>
+            <td class="right num">0.0%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td style="font-size:12px; color:#888;"></td>
+        </tr>
+        
+        <tr>
+            <td>Missing loan_age</td>
+            <td class="right num">574</td>
+            <td class="right num">0.058%</td>
+            <td><span class="status status-pass">PASS</span></td>
+            <td style="font-size:12px; color:#888;">Expected for SC-format files which do not populate this field</td>
+        </tr>
+        
+        </tbody>
+    </table>
+</section>
+
+<!-- ── Section 5: Distribution Profiles ── -->
+<section>
+    <h2>5. Distribution Profiles</h2>
+
+    <h3 style="font-size:13px; font-weight:600; margin: 12px 0 8px;">Credit Score Bands</h3>
+    <table>
+        <thead><tr><th>Band</th><th class="right">Loans</th><th class="right">% of Total</th><th>Distribution</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td>Subprime (<620)</td>
+            <td class="right num">591</td>
+            <td class="right num">0.1%</td>
+            <td><span class="bar-bg"><span class="bar-inner" style="width: 0.1%;"></span></span></td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td class="right num">73,577</td>
+            <td class="right num">7.4%</td>
+            <td><span class="bar-bg"><span class="bar-inner" style="width: 7.4%;"></span></span></td>
+        </tr>
+        
+        <tr>
+            <td>Good (680-719)</td>
+            <td class="right num">167,284</td>
+            <td class="right num">16.9%</td>
+            <td><span class="bar-bg"><span class="bar-inner" style="width: 16.9%;"></span></span></td>
+        </tr>
+        
+        <tr>
+            <td>Very Good (720-779)</td>
+            <td class="right num">428,269</td>
+            <td class="right num">43.2%</td>
+            <td><span class="bar-bg"><span class="bar-inner" style="width: 43.2%;"></span></span></td>
+        </tr>
+        
+        <tr>
+            <td>Excellent (780+)</td>
+            <td class="right num">322,207</td>
+            <td class="right num">32.5%</td>
+            <td><span class="bar-bg"><span class="bar-inner" style="width: 32.5%;"></span></span></td>
+        </tr>
+        
+        </tbody>
+    </table>
+
+    <h3 style="font-size:13px; font-weight:600; margin: 16px 0 8px;">Delinquency Status</h3>
+    <table>
+        <thead><tr><th>Status</th><th class="right">Loans</th><th class="right">% of Total</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td>Current</td>
+            <td class="right num">982,034</td>
+            <td class="right num">98.97%</td>
+        </tr>
+        
+        <tr>
+            <td>30_DPD</td>
+            <td class="right num">5,344</td>
+            <td class="right num">0.54%</td>
+        </tr>
+        
+        <tr>
+            <td>60_DPD</td>
+            <td class="right num">1,371</td>
+            <td class="right num">0.14%</td>
+        </tr>
+        
+        <tr>
+            <td>90_DPD</td>
+            <td class="right num">635</td>
+            <td class="right num">0.06%</td>
+        </tr>
+        
+        <tr>
+            <td>120_Plus_DPD</td>
+            <td class="right num">2,682</td>
+            <td class="right num">0.27%</td>
+        </tr>
+        
+        <tr>
+            <td>REO_Acquired</td>
+            <td class="right num">223</td>
+            <td class="right num">0.02%</td>
+        </tr>
+        
+        </tbody>
+    </table>
+
+    <h3 style="font-size:13px; font-weight:600; margin: 16px 0 8px;">Vintage Year</h3>
+    <table>
+        <thead><tr><th>Year</th><th class="right">Loans</th><th class="right">% of Total</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td>2014</td>
+            <td class="right num">296</td>
+            <td class="right num">0.0%</td>
+        </tr>
+        
+        <tr>
+            <td>2015</td>
+            <td class="right num">2,887</td>
+            <td class="right num">0.3%</td>
+        </tr>
+        
+        <tr>
+            <td>2016</td>
+            <td class="right num">148,415</td>
+            <td class="right num">15.0%</td>
+        </tr>
+        
+        <tr>
+            <td>2017</td>
+            <td class="right num">157,129</td>
+            <td class="right num">15.8%</td>
+        </tr>
+        
+        <tr>
+            <td>2018</td>
+            <td class="right num">110,769</td>
+            <td class="right num">11.2%</td>
+        </tr>
+        
+        <tr>
+            <td>2019</td>
+            <td class="right num">105,940</td>
+            <td class="right num">10.7%</td>
+        </tr>
+        
+        <tr>
+            <td>2020</td>
+            <td class="right num">193,679</td>
+            <td class="right num">19.5%</td>
+        </tr>
+        
+        <tr>
+            <td>2021</td>
+            <td class="right num">109,770</td>
+            <td class="right num">11.1%</td>
+        </tr>
+        
+        <tr>
+            <td>2022</td>
+            <td class="right num">50,446</td>
+            <td class="right num">5.1%</td>
+        </tr>
+        
+        <tr>
+            <td>2023</td>
+            <td class="right num">56,813</td>
+            <td class="right num">5.7%</td>
+        </tr>
+        
+        <tr>
+            <td>2024</td>
+            <td class="right num">56,145</td>
+            <td class="right num">5.7%</td>
+        </tr>
+        
+        </tbody>
+    </table>
+</section>
+
+<!-- ── Section 6: Per-Pool Manifest ── -->
+<section>
+    <h2>6. Per-Pool Load Manifest</h2>
+    <table>
+        <thead><tr><th>Pool</th><th class="right">Loans</th><th>Status</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td><code>15SC</code></td>
+            <td class="right num">574</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>16DI01</code></td>
+            <td class="right num">16,613</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>17DNA1</code></td>
+            <td class="right num">137,250</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>18DNA1</code></td>
+            <td class="right num">146,937</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>19DNA1</code></td>
+            <td class="right num">106,427</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>20DNA1</code></td>
+            <td class="right num">117,581</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>21DNA1</code></td>
+            <td class="right num">193,729</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>22DNA1</code></td>
+            <td class="right num">109,774</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>23DNA1</code></td>
+            <td class="right num">47,367</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>24DNA1</code></td>
+            <td class="right num">59,003</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td><code>25DNA1</code></td>
+            <td class="right num">57,034</td>
+            <td><span class="status status-pass">PASS</span></td>
+        </tr>
+        
+        </tbody>
+    </table>
+</section>
+
+<footer>© 2026 Amjad Ali Kudsi — Mortgage Servicing Analytics Platform</footer>
+</div>
+</body>
+</html>

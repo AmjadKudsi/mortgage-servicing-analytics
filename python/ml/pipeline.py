@@ -2,7 +2,7 @@
 pipeline.py — ML Pipeline Orchestrator.
 
 Runs two model types:
-    Model B (origination-only): Genuine predictor using only features
+    OriginRisk (origination only): Genuine predictor using only features
         known at time of lending. Produces honest AUC and lift metrics.
     Model A (behavioral): Risk segmentation tool using all features
         including payment history. Produces segment rankings.
@@ -52,18 +52,18 @@ def setup_ml_logging(log_file):
 
 def run_model_b(df, config, feature_names_out):
     """
-    Model B: Origination-only predictor.
+    Model B: origination only predictor.
     Uses only features available at time of lending.
     Produces genuine predictive metrics.
     """
     log = logging.getLogger("ml")
     log.info("\n" + "=" * 60)
-    log.info("MODEL B: ORIGINATION RISK PREDICTOR")
+    log.info("ORIGINRISK: ORIGINATION SCORING MODEL")
     log.info("=" * 60)
-    log.info("Features: origination-only (no payment history)")
-    log.info("Purpose: predict delinquency from borrower/loan characteristics")
+    log.info("Features: origination only (no payment history)")
+    log.info("Purpose: predict delinquency from borrower and loan characteristics")
 
-    # Prepare origination-only features
+    # Prepare origination only features
     X, y, feat_names = prepare_feature_set(df, config, model_type="origination")
     feature_names_out["model_b"] = feat_names
 
@@ -106,7 +106,7 @@ def run_model_b(df, config, feature_names_out):
             log.error(f"  {model_name} FAILED: {e}")
             results[model_name] = {"error": str(e)}
 
-    log.info(f"\n  Best Model B: {best_model} (AUC: {best_auc:.4f})")
+    log.info(f"\n  Best OriginRisk model: {best_model} (AUC: {best_auc:.4f})")
 
     return {
         "results": results,
@@ -118,16 +118,16 @@ def run_model_b(df, config, feature_names_out):
 
 def run_model_a(df, config, feature_names_out):
     """
-    Model A: Behavioral risk segmentation tool.
+    SEGMENTIQ: BEHAVIORAL SEGMENTATION MODEL tool.
     Uses all features including payment history.
     Produces segment rankings, not predictive metrics.
     """
     log = logging.getLogger("ml")
     log.info("\n" + "=" * 60)
-    log.info("MODEL A: BEHAVIORAL RISK SEGMENTATION")
+    log.info("SEGMENTIQ: BEHAVIORAL SEGMENTATION MODEL")
     log.info("=" * 60)
-    log.info("Features: origination + payment history (behavioral)")
-    log.info("Purpose: score and rank loan segments by current risk")
+    log.info("Features: origination plus payment history (behavioral)")
+    log.info("Purpose: score and rank loan segments by current portfolio risk")
 
     # Prepare full feature set
     X, y, feat_names = prepare_feature_set(df, config, model_type="behavioral")
@@ -236,7 +236,7 @@ def run(db_path, config_path=None):
 
     feature_names = {}
 
-    # ── Run Model B (origination predictor) ──
+    # ── Run OriginRisk (origination predictor) ──
     try:
         model_b_output = run_model_b(df, config, feature_names)
     except SafetyCheckFailed as e:
@@ -261,11 +261,11 @@ def run(db_path, config_path=None):
     best_name = model_b_output["best_model"]
     if best_name and best_name in model_b_output["results"]:
         best_metrics = model_b_output["results"][best_name]["metrics"]
-        log.info(f"  Model B ({best_name}):")
+        log.info(f"  OriginRisk ({best_name}):")
         log.info(f"    AUC: {best_metrics['auc_roc']:.4f}")
         log.info(f"    Lift at 10%: {best_metrics['lift_analysis'][2]['capture_rate_pct']:.1f}% capture")
 
-    log.info(f"  Model A (behavioral RF):")
+    log.info(f"  SegmentIQ (behavioral RF):")
     log.info(f"    Segments scored: {len(model_a_output['segments']):,}")
     top_seg = model_a_output["segments"].head(1).iloc[0] if len(model_a_output["segments"]) > 0 else None
     if top_seg is not None:

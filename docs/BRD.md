@@ -79,6 +79,8 @@ Monthly (aligned with Freddie Mac LLD data release cycle)
 | `geographic.csv` | Monthly | State | DLQ rate, loan count, UPB, avg FICO |
 | `loans_detail.csv` | Monthly | Loan-level | 28 columns for ad-hoc analysis |
 
+**Model Names:** The ML pipeline produces two models. The Origination Scoring Model ("OriginRisk") uses only features known at time of lending for genuine risk prediction. The Behavioral Segmentation Model ("SegmentIQ") uses all features including payment history for current portfolio risk ranking.
+
 ---
 
 ### Audience & Access

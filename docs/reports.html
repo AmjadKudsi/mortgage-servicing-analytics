@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Amjad Ali Kudsi">
+    <title>Data & Reports — Mortgage Servicing Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .reports-page{max-width:1200px;margin:0 auto;padding:32px 36px 60px;}
+        .reports-back{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:14px;font-weight:500;margin-bottom:24px;transition:var(--transition);}
+        .reports-back:hover{color:var(--accent-light);}
+        .reports-title{font-size:32px;font-weight:700;color:var(--text);margin-bottom:6px;}
+        .reports-subtitle{font-size:16px;color:var(--text-muted);margin-bottom:40px;line-height:1.7;}
+        .reports-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin-bottom:56px;}
+        .report-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition);box-shadow:var(--shadow);text-decoration:none;display:block;}
+        .report-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+        .report-card-thumb{width:100%;height:180px;background:var(--bg-warm);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden;}
+        .report-card-thumb svg{width:56px;height:56px;color:var(--accent);opacity:0.7;}
+        .report-card-thumb img{width:100%;height:100%;object-fit:cover;}
+        .report-card-body{padding:20px;}
+        .report-card-body h3{font-size:18px;font-weight:600;color:var(--text);margin-bottom:8px;}
+        .report-card-body p{font-size:14px;color:var(--text-muted);line-height:1.65;}
+        .report-card-tag{display:inline-block;margin-top:10px;font-size:11px;padding:3px 10px;border-radius:4px;background:var(--bg);color:var(--accent);border:1px solid var(--border);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+        .enhance-section{margin-top:20px;}
+        .enhance-section h2{font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px;}
+        .enhance-section .intro{font-size:15px;color:var(--text-muted);margin-bottom:32px;line-height:1.7;}
+        .enhance-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;box-shadow:var(--shadow);}
+        .enhance-card h3{font-size:19px;font-weight:700;color:var(--text);margin-bottom:10px;}
+        .enhance-card p{font-size:15px;color:var(--text-secondary);line-height:1.75;margin-bottom:10px;}
+        .enhance-card .label{display:inline-block;font-size:11px;padding:3px 10px;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;}
+        .label-model{background:rgba(196,151,59,0.15);color:var(--accent);}
+        .label-data{background:rgba(46,204,113,0.15);color:#2ecc71;}
+        .label-research{background:rgba(52,152,219,0.15);color:#3498db;}
+        .paper-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:14px;font-weight:500;margin-top:6px;transition:var(--transition);}
+        .paper-link:hover{color:var(--accent-light);}
+        .paper-link svg{width:16px;height:16px;}
+        .reports-footer{text-align:center;padding:32px 0;border-top:1px solid var(--border);margin-top:40px;font-size:12px;color:var(--text-muted);}
+    </style>
+</head>
+<body>
+<div class="reports-page">
+
+    <a href="index.html" class="reports-back">← Back to Portfolio</a>
+
+    <h1 class="reports-title">Data & Reports</h1>
+    <p class="reports-subtitle">All project deliverables, datasets, trained models, and documentation from the Mortgage Servicing Analytics Platform. Built on 992,289 Freddie Mac loans spanning 11 origination years (2014 to 2024).</p>
+
+    <!-- ═══ DELIVERABLES GRID ═══ -->
+    <div class="reports-grid">
+
+        <!-- 1. Technical Documentation -->
+        <a href="technical_docs.html" class="report-card">
+            <div class="report-card-thumb">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="report-card-body">
+                <h3>Technical Documentation</h3>
+                <p>Complete project architecture, pipeline design, SQL query catalog, ML model specifications, and deployment guide. Covers all seven stages of the build process.</p>
+                <span class="report-card-tag">Documentation</span>
+            </div>
+        </a>
+
+        <!-- 2. Cleaned Datasets -->
+        <a href="https://github.com/AmjadKudsi/mortgage-servicing-analytics/tree/main/data/clean/tableau" target="_blank" class="report-card">
+            <div class="report-card-thumb">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div class="report-card-body">
+                <h3>Cleaned Datasets</h3>
+                <p>Seven pre processed CSV files ready for analysis. Includes portfolio summary, delinquency distribution, roll rates, risk segments, vintage comparison, geographic breakdown, and full loan level detail (992K rows).</p>
+                <span class="report-card-tag">CSV Downloads</span>
+            </div>
+        </a>
+
+        <!-- 3. Data Quality Report -->
+        <a href="reports/data_quality_report.html" class="report-card">
+            <div class="report-card-thumb">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="report-card-body">
+                <h3>Data Quality Report</h3>
+                <p>Automated quality assessment with 19 checks across completeness, validity, consistency, and distribution profiling. Every check passed on the full dataset.</p>
+                <span class="report-card-tag">HTML Report</span>
+            </div>
+        </a>
+
+        <!-- 4. Executive Report -->
+        <a href="reports/executive_report.html" class="report-card">
+            <div class="report-card-thumb">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <div class="report-card-body">
+                <h3>ML Executive Report</h3>
+                <p>Eight section automated report with embedded Plotly charts, portfolio KPIs, vintage analysis, roll rate matrix, risk segments, model summary, and threshold driven recommendations.</p>
+                <span class="report-card-tag">HTML Report</span>
+            </div>
+        </a>
+
+        <!-- 5. Trained Models -->
+        <a href="https://github.com/AmjadKudsi/mortgage-servicing-analytics/tree/main/python/ml/model_artifacts" target="_blank" class="report-card">
+            <div class="report-card-thumb">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="report-card-body">
+                <h3>Trained Models</h3>
+                <p>Two trained scikit learn models saved as .joblib files. OriginRisk (logistic regression, origination features only) and SegmentIQ (random forest, behavioral segmentation). Load with <code style="font-size:12px;background:var(--bg);padding:2px 6px;border-radius:3px;">joblib.load()</code> in Python.</p>
+                <span class="report-card-tag">Model Artifacts</span>
+            </div>
+        </a>
+
+        <!-- 6. Domain Cheatsheet -->
+        <a href="cheatsheet.html" class="report-card">
+            <div class="report-card-thumb">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="report-card-body">
+                <h3>Mortgage Domain Cheatsheet</h3>
+                <p>Quick reference guide covering mortgage servicing terminology, delinquency metrics, roll rate definitions, Freddie Mac data fields, and key financial concepts used throughout the project.</p>
+                <span class="report-card-tag">Reference Guide</span>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- ═══ ENHANCEMENT IDEAS ═══ -->
+    <div class="enhance-section">
+        <h2>Enhancement Roadmap</h2>
+        <p class="intro">Documented paths for improving model performance, expanding data coverage, and adding new analytical capabilities. Each enhancement builds on the existing pipeline architecture without requiring structural changes.</p>
+
+        <!-- Enhancement 1: Calibration Layer -->
+        <div class="enhance-card">
+            <span class="label label-model">Model Enhancement</span>
+            <h3>Calibration Layer for Dollar Loss Estimation</h3>
+            <p>The current OriginRisk model outputs a probability score, for example "this loan has a 12% chance of becoming delinquent." However, the servicing team does not only care about probability. They care about dollar exposure. A $500K loan with 5% risk represents more potential loss than a $100K loan with 15% risk.</p>
+            <p>A calibration layer would adjust the raw probability outputs so they accurately reflect real world default rates, then multiply each score by the loan balance to produce an expected dollar loss per loan. This transforms the risk score from a ranking tool into a business decision tool. For example: "These 500 loans represent $2.3M in expected losses. Allocate loss mitigation resources here."</p>
+        </div>
+
+        <!-- Enhancement 2: Gradient Boosting -->
+        <div class="enhance-card">
+            <span class="label label-model">Model Enhancement</span>
+            <h3>Gradient Boosting as a Third Model Candidate</h3>
+            <p>The current pipeline trains Logistic Regression and Random Forest. Both achieved similar performance (AUC 0.77). Random Forest builds 200 independent decision trees and averages their predictions. Gradient boosting methods like XGBoost or LightGBM work differently. They build trees one after another, where each new tree focuses specifically on the loans that previous trees got wrong. This iterative correction process typically produces better results on structured tabular data.</p>
+            <p>The pipeline already has HistGradientBoosting registered in <code style="font-size:13px;background:var(--bg);padding:2px 6px;border-radius:3px;">train.py</code> but unused. Enabling it requires a one line configuration change. Expected improvement: 2 to 3 additional AUC points, producing a three model comparison table in the evaluation report.</p>
+        </div>
+
+        <!-- Enhancement 3: Full 128 files -->
+        <div class="enhance-card">
+            <span class="label label-data">Data Expansion</span>
+            <h3>Processing the Full 128 File Freddie Mac Dataset</h3>
+            <p>The current pipeline processes 11 selected files (one pool per vintage year, 2015 to 2025), totaling 992,289 loans. Freddie Mac publishes approximately 128 files in each quarterly release. The remaining files contain additional loan pools from the same origination years, representing roughly 5 to 8 million total loans.</p>
+            <p>More data means more statistically robust risk segments (many current segments have only 30 to 50 loans), better geographic coverage per state, and slightly improved model accuracy. The pipeline architecture already handles this without code changes. Simply add more raw files to the data directory and rerun the ETL.</p>
+            <p>The fundamental constraints remain the same: single snapshot (not time series), same feature set, and similar class imbalance ratio of approximately 1% delinquent loans.</p>
+        </div>
+
+        <!-- Enhancement 4: Fannie Mae -->
+        <div class="enhance-card">
+            <span class="label label-data">Data Expansion</span>
+            <h3>Incorporating Fannie Mae Monthly Performance Data</h3>
+            <p>Fannie Mae publishes a Single Family Loan Performance dataset (20 to 50 GB per vintage) with a structure similar to Freddie Mac. However, it includes one critical field that Freddie Mac does not provide: monthly reporting period performance records. Each loan appears once per month with its current status, creating true time series data.</p>
+            <p>With monthly snapshots, the model could be trained on data from month N and tested on whether it correctly predicts delinquency at month N+3. This is genuine forward looking prediction rather than the current snapshot based scoring approach. The expected AUC improvement would be significant, likely reaching 0.82 to 0.88, because temporal features capture how a loan's payment behavior changes over time.</p>
+            <p>Implementation would require modifying the ETL pipeline to reshape monthly performance records into a time series format. The ML pipeline and downstream reporting would remain unchanged.</p>
+        </div>
+
+        <!-- Enhancement 5: Research Paper 1 -->
+        <div class="enhance-card">
+            <span class="label label-research">Research Insight</span>
+            <h3>Adding Local Economic Indicators (BLS Unemployment Data)</h3>
+            <p>A study of 12 million residential mortgages across seven European countries found that local economic conditions, specifically unemployment rate and house price indices, were among the most important variables explaining loan default. Their methodology used the same feature types (credit score, LTV, interest rate), the same ML models (logistic regression, random forest), and addressed the same prediction problem as this project.</p>
+            <p>The practical enhancement: join publicly available state level unemployment data from the Bureau of Labor Statistics (BLS) to the loan dataset. This is a simple CSV download containing state, month, and unemployment rate. Joining on property_state would add one to two features capturing local economic stress, which the current model cannot detect from loan level attributes alone.</p>
+            <a href="https://academic.oup.com/jfec/article/21/2/569/6313398" target="_blank" class="paper-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Read the paper: Forecasting Loan Default in Europe with Machine Learning
+            </a>
+        </div>
+
+        <!-- Enhancement 6: Research Paper 2 -->
+        <div class="enhance-card">
+            <span class="label label-research">Research Insight</span>
+            <h3>AutoML and Leakage Aware Modeling (Fannie Mae Study)</h3>
+            <p>A January 2026 study on Fannie Mae loan data focused on three challenges that directly overlap with this project: ambiguity in default labeling, severe class imbalance, and information leakage from temporal structure and post event variables. Their leakage aware approach validates the dual model design used here, where payment history variables are excluded from the origination model to prevent the target variable from appearing in the input features.</p>
+            <p>They compared Logistic Regression, Random Forest, XGBoost, LightGBM, and AutoGluon (an automated ML framework). AutoGluon achieved the strongest AUROC by automatically combining multiple models and optimizing their configurations. This suggests that adding automated model selection to the pipeline could extract additional performance without manual tuning.</p>
+            <a href="https://arxiv.org/html/2602.00120v1" target="_blank" class="paper-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Read the paper: Predicting Mortgage Default with ML, AutoML, Class Imbalance, and Leakage Control
+            </a>
+        </div>
+
+    </div>
+
+    <div class="reports-footer">&copy; 2026 Amjad Ali Kudsi &middot; Mortgage Servicing Analytics Platform</div>
+
+</div>
+
+<script>
+    // Apply saved theme
+    const saved = localStorage.getItem('theme');
+    if (saved !== 'light') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', 'light');
+</script>
+</body>
+</html>

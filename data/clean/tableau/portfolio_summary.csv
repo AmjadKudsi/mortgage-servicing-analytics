@@ -1,0 +1,2 @@
+total_loans,total_upb,avg_credit_score,avg_orig_rate,avg_ltv,delinquency_rate_pct,serious_dlq_rate_pct,delinquent_loans,seriously_delinquent_loans,earliest_vintage,latest_vintage,states_covered,pools_loaded
+992289,247670604531.0,751.0,4.38,75.6,1.03,0.36,10255.0,3540.0,2014.0,2024.0,54,11

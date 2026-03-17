@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Amjad Ali Kudsi">
+<title>Executive Report — Mortgage Servicing Analytics</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f6fa; color: #2c3e50; line-height: 1.6; padding: 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 24px; font-weight: 700; color: #1a2332; margin-bottom: 4px; }
+    .subtitle { font-size: 13px; color: #7f8c8d; margin-bottom: 20px; }
+    section { background: #fff; border-radius: 6px; padding: 20px 24px; margin-bottom: 16px; border: 1px solid #e8e8e8; }
+    section h2 { font-size: 16px; font-weight: 600; color: #1a2332; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1a2332; }
+    section h3 { font-size: 14px; font-weight: 600; color: #2c3e50; margin: 16px 0 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+    th { text-align: left; padding: 8px 10px; background: #f8f9fa; color: #555; font-weight: 600; border-bottom: 2px solid #ddd; }
+    td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; }
+    tr:hover { background: #fafbfc; }
+    .right { text-align: right; }
+    .num { font-variant-numeric: tabular-nums; }
+    .kpi-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .kpi-card { flex: 1; min-width: 130px; background: #f8f9fa; border-radius: 5px; padding: 14px 16px; border: 1px solid #eee; }
+    .kpi-value { font-size: 22px; font-weight: 700; color: #1a2332; }
+    .kpi-label { font-size: 11px; color: #7f8c8d; margin-top: 2px; }
+    .headline { background: #eef2f7; border-left: 4px solid #1a2332; padding: 12px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 14px; }
+    .insight { background: #fef9e7; border-left: 4px solid #f39c12; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 13px; }
+    .cell-high { background: #fadbd8; color: #922b21; font-weight: 600; }
+    .cell-med { background: #fef9e7; color: #b7950b; }
+    .cell-low { background: #d5f5e3; color: #1e8449; }
+    .rec-card { background: #f8f9fa; border-left: 4px solid #2e86c1; padding: 10px 14px; margin: 8px 0; border-radius: 0 4px 4px 0; font-size: 13px; }
+    .rec-card strong { color: #1a2332; }
+    .chart-container { width: 100%; margin: 12px 0; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+    .badge-good { background: #d5f5e3; color: #1e8449; }
+    .badge-caution { background: #fef9e7; color: #b7950b; }
+    .badge-alert { background: #fadbd8; color: #922b21; }
+    footer { text-align: center; color: #bbb; font-size: 11px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; }
+    @media print { body { padding: 12px; } section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Mortgage Portfolio Executive Report</h1>
+<p class="subtitle">Generated: 2026-03-14 10:03:06 | Portfolio as of: 202602 | Author: Amjad Ali Kudsi</p>
+
+<!-- ══════ Section 1: Executive Summary ══════ -->
+<section>
+    <h2>1. Executive Summary</h2>
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-value num">992,289</div>
+            <div class="kpi-label">Total Loans</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">$247.7B</div>
+            <div class="kpi-label">Total UPB</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num" style="color: #b7950b">1.03%</div>
+            <div class="kpi-label">Delinquency Rate (30+ DPD)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">0.36%</div>
+            <div class="kpi-label">Serious DLQ (90+ DPD)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">751</div>
+            <div class="kpi-label">Avg FICO at Origination</div>
+        </div>
+    </div>
+    <div class="headline">Portfolio delinquency stands at 1.03% across 992,289 loans ($247.7B UPB). The 2022 vintage is the highest-risk cohort at 2.39% delinquency — 2.3x the portfolio average.</div>
+</section>
+
+<!-- ══════ Section 2: Vintage Performance ══════ -->
+<section>
+    <h2>2. Vintage Performance Comparison</h2>
+    <table>
+        <thead><tr>
+            <th>Vintage</th><th class="right">Loans</th><th class="right">UPB ($B)</th>
+            <th class="right">DLQ Rate</th><th class="right">90+ DPD</th>
+            <th class="right">Avg FICO</th><th class="right">Avg Rate</th>
+        </tr></thead>
+        <tbody>
+        
+        <tr>
+            <td><strong>2014</strong></td>
+            <td class="right num">296</td>
+            <td class="right num">$0.00B</td>
+            <td class="right num cell-low">0.34%</td>
+            <td class="right num">0.0%</td>
+            <td class="right num">758</td>
+            <td class="right num">4.219%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2015</strong></td>
+            <td class="right num">2,887</td>
+            <td class="right num">$0.72B</td>
+            <td class="right num cell-low">0.35%</td>
+            <td class="right num">0.17%</td>
+            <td class="right num">770</td>
+            <td class="right num">4.0%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2016</strong></td>
+            <td class="right num">148,415</td>
+            <td class="right num">$32.05B</td>
+            <td class="right num cell-low">0.98%</td>
+            <td class="right num">0.35%</td>
+            <td class="right num">750</td>
+            <td class="right num">3.994%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2017</strong></td>
+            <td class="right num">157,129</td>
+            <td class="right num">$33.77B</td>
+            <td class="right num cell-low">0.97%</td>
+            <td class="right num">0.35%</td>
+            <td class="right num">746</td>
+            <td class="right num">4.417%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2018</strong></td>
+            <td class="right num">110,769</td>
+            <td class="right num">$24.05B</td>
+            <td class="right num cell-low">0.87%</td>
+            <td class="right num">0.35%</td>
+            <td class="right num">747</td>
+            <td class="right num">4.765%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2019</strong></td>
+            <td class="right num">105,940</td>
+            <td class="right num">$24.91B</td>
+            <td class="right num cell-low">0.83%</td>
+            <td class="right num">0.29%</td>
+            <td class="right num">750</td>
+            <td class="right num">4.657%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2020</strong></td>
+            <td class="right num">193,679</td>
+            <td class="right num">$52.23B</td>
+            <td class="right num cell-low">0.56%</td>
+            <td class="right num">0.15%</td>
+            <td class="right num">759</td>
+            <td class="right num">3.328%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2021</strong></td>
+            <td class="right num">109,770</td>
+            <td class="right num">$30.37B</td>
+            <td class="right num cell-med">1.35%</td>
+            <td class="right num">0.4%</td>
+            <td class="right num">749</td>
+            <td class="right num">3.188%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2022</strong></td>
+            <td class="right num">50,446</td>
+            <td class="right num">$15.03B</td>
+            <td class="right num cell-high">2.39%</td>
+            <td class="right num">0.91%</td>
+            <td class="right num">746</td>
+            <td class="right num">5.385%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2023</strong></td>
+            <td class="right num">56,813</td>
+            <td class="right num">$16.64B</td>
+            <td class="right num cell-high">1.79%</td>
+            <td class="right num">0.71%</td>
+            <td class="right num">750</td>
+            <td class="right num">6.52%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>2024</strong></td>
+            <td class="right num">56,145</td>
+            <td class="right num">$17.91B</td>
+            <td class="right num cell-med">1.09%</td>
+            <td class="right num">0.3%</td>
+            <td class="right num">755</td>
+            <td class="right num">6.926%</td>
+        </tr>
+        
+        </tbody>
+    </table>
+    
+    <div class="insight">⚠ 2022 vintage has the highest delinquency at 2.39% — 2.3x the portfolio average. This cohort originated at 5.385% average rate with 746 average FICO.</div>
+    
+    
+    <div class="insight" style="border-left-color: #27ae60;">✓ 2015 vintage is the strongest performer at 0.35% delinquency with 770 average FICO.</div>
+    
+</section>
+
+<!-- ══════ Section 3: DPD Distribution ══════ -->
+<section>
+    <h2>3. Delinquency Distribution</h2>
+    <div class="chart-container" id="dpd_chart"></div>
+    <script>
+        var dpdData = {"labels": ["REO_Acquired", "120_Plus_DPD", "90_DPD", "60_DPD", "30_DPD", "Current"], "values": [223, 2682, 635, 1371, 5344, 982034], "colors": ["#7d3c98", "#c0392b", "#e74c3c", "#e67e22", "#f39c12", "#27ae60"], "text": ["0.02%", "0.27%", "0.06%", "0.14%", "0.54%", "98.97%"]};
+        Plotly.newPlot('dpd_chart', [{
+            x: dpdData.values,
+            y: dpdData.labels,
+            type: 'bar',
+            orientation: 'h',
+            marker: { color: dpdData.colors },
+            text: dpdData.text,
+            textposition: 'outside',
+            hovertemplate: '%{y}: %{x:,} loans (%{text})<extra></extra>'
+        }], {
+            margin: { l: 120, r: 60, t: 10, b: 40 },
+            xaxis: { title: 'Loan Count' },
+            height: 220,
+            font: { family: '-apple-system, sans-serif', size: 12 }
+        }, { responsive: true, displayModeBar: false });
+    </script>
+</section>
+
+<!-- ══════ Section 4: Roll Rates ══════ -->
+<section>
+    <h2>4. Roll Rate Transition Matrix</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Probability of transitioning between delinquency states (last 12 months of payment history)</p>
+    <table>
+        <thead><tr><th>From ↓ / To →</th><th class="right">Current</th><th class="right">30_DPD</th><th class="right">60_DPD</th><th class="right">90_DPD</th><th class="right">120_Plus</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td><strong>Current</strong></td>
+            
+            
+            <td class="right num cell-low">99.23%</td>
+            
+            
+            <td class="right num ">0.42%</td>
+            
+            
+            <td class="right num ">0.12%</td>
+            
+            
+            <td class="right num ">0.06%</td>
+            
+            
+            <td class="right num ">0.17%</td>
+            
+        </tr>
+        
+        <tr>
+            <td><strong>30_DPD</strong></td>
+            
+            
+            <td class="right num cell-low">81.99%</td>
+            
+            
+            <td class="right num cell-med">5.05%</td>
+            
+            
+            <td class="right num ">3.02%</td>
+            
+            
+            <td class="right num ">2.35%</td>
+            
+            
+            <td class="right num cell-med">7.58%</td>
+            
+        </tr>
+        
+        <tr>
+            <td><strong>60_DPD</strong></td>
+            
+            
+            <td class="right num cell-low">81.03%</td>
+            
+            
+            <td class="right num cell-med">8.29%</td>
+            
+            
+            <td class="right num ">2.79%</td>
+            
+            
+            <td class="right num ">1.73%</td>
+            
+            
+            <td class="right num cell-med">6.16%</td>
+            
+        </tr>
+        
+        <tr>
+            <td><strong>90_DPD</strong></td>
+            
+            
+            <td class="right num cell-low">80.80%</td>
+            
+            
+            <td class="right num cell-high">10.76%</td>
+            
+            
+            <td class="right num ">2.90%</td>
+            
+            
+            <td class="right num ">1.62%</td>
+            
+            
+            <td class="right num ">3.93%</td>
+            
+        </tr>
+        
+        <tr>
+            <td><strong>120_Plus</strong></td>
+            
+            
+            <td class="right num cell-low">75.30%</td>
+            
+            
+            <td class="right num cell-high">17.17%</td>
+            
+            
+            <td class="right num ">4.20%</td>
+            
+            
+            <td class="right num ">1.52%</td>
+            
+            
+            <td class="right num ">1.81%</td>
+            
+        </tr>
+        
+        </tbody>
+    </table>
+    
+    <div class="insight" style="border-left-color: #27ae60;">✓ 30-DPD cure rate: 82.0% of loans one month late returned to current. This indicates active and effective early intervention.</div>
+    
+</section>
+
+<!-- ══════ Section 5: Geographic Hotspots ══════ -->
+<section>
+    <h2>5. Geographic Risk Hotspots</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">States with delinquency rates above portfolio average (1.03%), minimum 500 loans</p>
+    <table>
+        <thead><tr><th>State</th><th class="right">Loans</th><th class="right">UPB ($B)</th><th class="right">DLQ Rate</th><th class="right">vs Portfolio</th><th class="right">Avg FICO</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td><strong>WV</strong></td>
+            <td class="right num">2,288</td>
+            <td class="right num">$0.363B</td>
+            <td class="right num cell-high">1.97%</td>
+            <td class="right num">1.9x</td>
+            <td class="right num">747</td>
+        </tr>
+        
+        <tr>
+            <td><strong>LA</strong></td>
+            <td class="right num">9,008</td>
+            <td class="right num">$1.787B</td>
+            <td class="right num cell-high">1.68%</td>
+            <td class="right num">1.6x</td>
+            <td class="right num">748</td>
+        </tr>
+        
+        <tr>
+            <td><strong>MS</strong></td>
+            <td class="right num">3,224</td>
+            <td class="right num">$0.575B</td>
+            <td class="right num cell-high">1.61%</td>
+            <td class="right num">1.6x</td>
+            <td class="right num">745</td>
+        </tr>
+        
+        <tr>
+            <td><strong>NY</strong></td>
+            <td class="right num">29,940</td>
+            <td class="right num">$8.850B</td>
+            <td class="right num cell-high">1.6%</td>
+            <td class="right num">1.6x</td>
+            <td class="right num">749</td>
+        </tr>
+        
+        <tr>
+            <td><strong>AR</strong></td>
+            <td class="right num">6,502</td>
+            <td class="right num">$1.152B</td>
+            <td class="right num cell-med">1.37%</td>
+            <td class="right num">1.3x</td>
+            <td class="right num">751</td>
+        </tr>
+        
+        <tr>
+            <td><strong>FL</strong></td>
+            <td class="right num">74,396</td>
+            <td class="right num">$16.617B</td>
+            <td class="right num cell-med">1.27%</td>
+            <td class="right num">1.2x</td>
+            <td class="right num">749</td>
+        </tr>
+        
+        <tr>
+            <td><strong>TX</strong></td>
+            <td class="right num">80,276</td>
+            <td class="right num">$18.932B</td>
+            <td class="right num cell-med">1.26%</td>
+            <td class="right num">1.2x</td>
+            <td class="right num">749</td>
+        </tr>
+        
+        <tr>
+            <td><strong>PA</strong></td>
+            <td class="right num">27,837</td>
+            <td class="right num">$5.679B</td>
+            <td class="right num cell-med">1.24%</td>
+            <td class="right num">1.2x</td>
+            <td class="right num">753</td>
+        </tr>
+        
+        <tr>
+            <td><strong>NJ</strong></td>
+            <td class="right num">26,548</td>
+            <td class="right num">$7.753B</td>
+            <td class="right num cell-med">1.23%</td>
+            <td class="right num">1.2x</td>
+            <td class="right num">751</td>
+        </tr>
+        
+        <tr>
+            <td><strong>OK</strong></td>
+            <td class="right num">7,898</td>
+            <td class="right num">$1.383B</td>
+            <td class="right num cell-med">1.22%</td>
+            <td class="right num">1.2x</td>
+            <td class="right num">751</td>
+        </tr>
+        
+        <tr>
+            <td><strong>IN</strong></td>
+            <td class="right num">21,463</td>
+            <td class="right num">$3.589B</td>
+            <td class="right num cell-med">1.2%</td>
+            <td class="right num">1.2x</td>
+            <td class="right num">748</td>
+        </tr>
+        
+        <tr>
+            <td><strong>CT</strong></td>
+            <td class="right num">9,161</td>
+            <td class="right num">$2.176B</td>
+            <td class="right num cell-med">1.18%</td>
+            <td class="right num">1.1x</td>
+            <td class="right num">751</td>
+        </tr>
+        
+        </tbody>
+    </table>
+</section>
+
+<!-- ══════ Section 6: Risk Segments ══════ -->
+<section>
+    <h2>6. Highest-Risk Loan Segments</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Top 15 segments by model risk score (Model A behavioral segmentation, minimum 30 loans per segment)</p>
+    <table>
+        <thead><tr>
+            <th>Credit Band</th><th>LTV</th><th>Rate</th><th>Vintage</th>
+            <th class="right">Loans</th><th class="right">UPB ($M)</th>
+            <th class="right">Risk Score</th><th class="right">Actual DLQ</th>
+        </tr></thead>
+        <tbody>
+        
+        <tr>
+            <td>Subprime (<620)</td>
+            <td>Medium (61-80)</td>
+            <td>5.5% - 6.5%</td>
+            <td>2022</td>
+            <td class="right num">47</td>
+            <td class="right num">$13.9M</td>
+            <td class="right num cell-high">17.93%</td>
+            <td class="right num cell-high">10.64%</td>
+        </tr>
+        
+        <tr>
+            <td>Subprime (<620)</td>
+            <td>Medium (61-80)</td>
+            <td>6.5%+</td>
+            <td>2023</td>
+            <td class="right num">45</td>
+            <td class="right num">$8.9M</td>
+            <td class="right num cell-high">16.05%</td>
+            <td class="right num cell-high">11.11%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Medium (61-80)</td>
+            <td>6.5%+</td>
+            <td>2022</td>
+            <td class="right num">471</td>
+            <td class="right num">$122.6M</td>
+            <td class="right num cell-high">13.44%</td>
+            <td class="right num cell-high">9.34%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>High (81-90)</td>
+            <td>4.5% - 5.5%</td>
+            <td>2016</td>
+            <td class="right num">32</td>
+            <td class="right num">$6.5M</td>
+            <td class="right num cell-high">13.3%</td>
+            <td class="right num cell-high">6.25%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Very High (>90)</td>
+            <td>3.5% - 4.5%</td>
+            <td>2017</td>
+            <td class="right num">108</td>
+            <td class="right num">$20.1M</td>
+            <td class="right num cell-high">12.9%</td>
+            <td class="right num cell-high">7.41%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Very High (>90)</td>
+            <td>4.5% - 5.5%</td>
+            <td>2017</td>
+            <td class="right num">99</td>
+            <td class="right num">$18.4M</td>
+            <td class="right num cell-high">12.26%</td>
+            <td class="right num cell-high">6.06%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Very High (>90)</td>
+            <td>4.5% - 5.5%</td>
+            <td>2016</td>
+            <td class="right num">56</td>
+            <td class="right num">$10.9M</td>
+            <td class="right num cell-high">12.08%</td>
+            <td class="right num cell-high">5.36%</td>
+        </tr>
+        
+        <tr>
+            <td>Subprime (<620)</td>
+            <td>Medium (61-80)</td>
+            <td>3.5% - 4.5%</td>
+            <td>2016</td>
+            <td class="right num">47</td>
+            <td class="right num">$7.1M</td>
+            <td class="right num cell-high">11.98%</td>
+            <td class="right num cell-high">6.38%</td>
+        </tr>
+        
+        <tr>
+            <td>Subprime (<620)</td>
+            <td>Medium (61-80)</td>
+            <td>3.5% - 4.5%</td>
+            <td>2020</td>
+            <td class="right num">32</td>
+            <td class="right num">$5.4M</td>
+            <td class="right num cell-high">11.89%</td>
+            <td class="right num cell-high">6.25%</td>
+        </tr>
+        
+        <tr>
+            <td>Subprime (<620)</td>
+            <td>Medium (61-80)</td>
+            <td>4.5% - 5.5%</td>
+            <td>2017</td>
+            <td class="right num">79</td>
+            <td class="right num">$12.6M</td>
+            <td class="right num cell-high">11.74%</td>
+            <td class="right num cell-high">6.33%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Medium (61-80)</td>
+            <td>5.5% - 6.5%</td>
+            <td>2022</td>
+            <td class="right num">3,146</td>
+            <td class="right num">$766.7M</td>
+            <td class="right num cell-high">11.73%</td>
+            <td class="right num cell-high">7.31%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Medium (61-80)</td>
+            <td>5.5% - 6.5%</td>
+            <td>2023</td>
+            <td class="right num">968</td>
+            <td class="right num">$239.5M</td>
+            <td class="right num cell-high">11.19%</td>
+            <td class="right num cell-high">7.54%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Very High (>90)</td>
+            <td>3.5% - 4.5%</td>
+            <td>2016</td>
+            <td class="right num">273</td>
+            <td class="right num">$55.8M</td>
+            <td class="right num cell-high">11.07%</td>
+            <td class="right num cell-high">5.13%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Medium (61-80)</td>
+            <td>3.5% - 4.5%</td>
+            <td>2022</td>
+            <td class="right num">126</td>
+            <td class="right num">$32.8M</td>
+            <td class="right num cell-high">10.92%</td>
+            <td class="right num cell-high">7.94%</td>
+        </tr>
+        
+        <tr>
+            <td>Fair (620-679)</td>
+            <td>Medium (61-80)</td>
+            <td>5.5% - 6.5%</td>
+            <td>2020</td>
+            <td class="right num">96</td>
+            <td class="right num">$13.9M</td>
+            <td class="right num cell-high">10.88%</td>
+            <td class="right num cell-high">7.29%</td>
+        </tr>
+        
+        </tbody>
+    </table>
+    
+    <div class="insight">⚠ The top 15 segments represent 5,625 loans ($1.3B UPB) with an average delinquency rate of 7.4% — 7.2x the portfolio average.</div>
+    
+</section>
+
+<!-- ══════ Section 7: Predictive Model Summary ══════ -->
+<section>
+    <h2>7. Predictive Risk Model (Origination Features)</h2>
+    <p style="font-size: 12px; color: #7f8c8d; margin-bottom: 10px;">Model B: predicts delinquency likelihood using only borrower and loan characteristics known at origination</p>
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-value num">0.77</div>
+            <div class="kpi-label">AUC-ROC</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">39.5%</div>
+            <div class="kpi-label">Capture at Top 10%</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value num">58.8%</div>
+            <div class="kpi-label">Capture at Top 20%</div>
+        </div>
+    </div>
+    <h3>Top Delinquency Risk Drivers</h3>
+    <table>
+        <thead><tr><th>#</th><th>Feature</th><th class="right">Importance</th><th>Interpretation</th></tr></thead>
+        <tbody>
+        
+        <tr>
+            <td>1</td>
+            <td><strong>credit_score</strong></td>
+            <td class="right num">0.7015</td>
+            <td style="font-size: 12px; color: #666;">Lower FICO scores strongly predict higher delinquency risk</td>
+        </tr>
+        
+        <tr>
+            <td>2</td>
+            <td><strong>num_borrowers</strong></td>
+            <td class="right num">0.4405</td>
+            <td style="font-size: 12px; color: #666;">Single-borrower loans carry more risk than co-borrower loans</td>
+        </tr>
+        
+        <tr>
+            <td>3</td>
+            <td><strong>orig_interest_rate</strong></td>
+            <td class="right num">0.2779</td>
+            <td style="font-size: 12px; color: #666;">Higher rates mean higher monthly payments and more payment stress</td>
+        </tr>
+        
+        <tr>
+            <td>4</td>
+            <td><strong>dti</strong></td>
+            <td class="right num">0.2391</td>
+            <td style="font-size: 12px; color: #666;">Higher debt-to-income ratios indicate the borrower is financially stretched</td>
+        </tr>
+        
+        <tr>
+            <td>5</td>
+            <td><strong>loan_age</strong></td>
+            <td class="right num">0.2128</td>
+            <td style="font-size: 12px; color: #666;">Loan seasoning affects risk — newer and very old loans behave differently</td>
+        </tr>
+        
+        <tr>
+            <td>6</td>
+            <td><strong>rate_bucket_Below 3.5%</strong></td>
+            <td class="right num">0.1778</td>
+            <td style="font-size: 12px; color: #666;">Low-rate loans have affordable payments — lower risk</td>
+        </tr>
+        
+        <tr>
+            <td>7</td>
+            <td><strong>loan_purpose_P</strong></td>
+            <td class="right num">0.1686</td>
+            <td style="font-size: 12px; color: #666;">Contributes to risk assessment</td>
+        </tr>
+        
+        </tbody>
+    </table>
+</section>
+
+<!-- ══════ Section 8: Recommended Actions ══════ -->
+<section>
+    <h2>8. Recommended Actions</h2>
+    
+    
+    <div class="rec-card">
+        <strong>Vintage Risk:</strong> 2022 vintage delinquency (2.39%) is 2.3x the portfolio average. Recommend targeted outreach for the 50,446 loans ($15.0B UPB) in this cohort.
+    </div>
+    
+    <div class="rec-card">
+        <strong>Geographic Concentration:</strong> WV shows 1.97% delinquency (1.9x portfolio average) across 2,288 loans. Monitor for regional economic stress.
+    </div>
+    
+    <div class="rec-card">
+        <strong>Geographic Concentration:</strong> LA shows 1.68% delinquency (1.6x portfolio average) across 9,008 loans. Monitor for regional economic stress.
+    </div>
+    
+    <div class="rec-card">
+        <strong>Geographic Concentration:</strong> MS shows 1.61% delinquency (1.6x portfolio average) across 3,224 loans. Monitor for regional economic stress.
+    </div>
+    
+    <div class="rec-card">
+        <strong>Segment Concentration:</strong> Top 15 risk segments contain 5,625 loans ($1.3B UPB) with 7.4% average delinquency. Prioritize loss mitigation resources for these segments.
+    </div>
+    
+    <div class="rec-card">
+        <strong>Loss Mitigation Effectiveness:</strong> 30-DPD cure rate of 82.0% indicates effective early intervention. Maintain current outreach intensity for newly delinquent loans.
+    </div>
+    
+    <div class="rec-card">
+        <strong>Risk Scoring Opportunity:</strong> The origination risk model captures 58.8% of delinquencies in the top 20% of scored loans. Deploying this model for proactive outreach could significantly improve early intervention targeting.
+    </div>
+    
+    
+</section>
+
+<footer>
+    &copy; 2026 Amjad Ali Kudsi — Mortgage Servicing Analytics Platform<br>
+    Data source: Freddie Mac Loan-Level Disclosure, February 2026 release
+</footer>
+</div>
+</body>
+</html>

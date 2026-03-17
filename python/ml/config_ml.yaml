@@ -3,6 +3,10 @@
 # ─────────────────────────────────────────────────────────────────
 
 # ── Feature Sets ──
+# Model Names:
+#   OriginRisk — Origination Scoring Model (uses only origination time features)
+#   SegmentIQ  — Behavioral Segmentation Model (uses all features including payment history)
+
 # Model B: origination-only (genuine predictor)
 origination_features_numeric:
   - credit_score

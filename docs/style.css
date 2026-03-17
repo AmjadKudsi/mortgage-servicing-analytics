@@ -67,6 +67,8 @@
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px var(--accent-glow);color:#fff}
 .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text-secondary)}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-white{background:#ffffff;color:#2a1f14;border:1px solid #ddd3c7}
+.btn-white:hover{background:#f5f0eb;color:#8B6914}
 
 /* ML Demo */
 .ml-demo{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:40px;margin-bottom:56px;box-shadow:var(--shadow)}
