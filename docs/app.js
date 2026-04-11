@@ -72,4 +72,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(() => {}); // keep fallback value
+
+    // Tableau preview embed — runs after DOM is ready, won't block anything
+    const previewObj = document.getElementById('viz-preview-obj');
+    if (previewObj) {
+        const previewWrap = document.getElementById('viz-preview');
+        previewObj.style.width = previewWrap.offsetWidth + 'px';
+        previewObj.style.height = '380px';
+        const tScript = document.createElement('script');
+        tScript.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        tScript.onerror = () => {
+            // If Tableau fails to load, fall back to the static image
+            previewWrap.innerHTML = '<img src="assets/tableau_preview.png" alt="Mortgage Analytics Dashboard" style="width:100%;height:100%;object-fit:cover;">';
+        };
+        previewObj.parentNode.insertBefore(tScript, previewObj);
+    }
 });
