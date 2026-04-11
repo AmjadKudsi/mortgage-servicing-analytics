@@ -10,23 +10,18 @@
 <body>
 <div class="dashboard-page">
     <div class="dashboard-topbar">
-        <div style="display:flex;gap:16px;align-items:center;">
-            <a href="index.html" class="dashboard-back">← Back to Portfolio</a>
-            <button id="resetDashboardBtn" onclick="resetDashboard()" style="background:transparent;color:var(--accent);border:1px solid var(--accent);padding:5px 14px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--accent)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">↺ Reset Dashboard</button>
-        </div>
+        <a href="index.html" class="dashboard-back">← Back to Portfolio</a>
         <span class="dashboard-credit">&copy; 2026 Amjad Ali Kudsi · Mortgage Servicing Analytics</span>
     </div>
     <div class="dashboard-embed">
-        <div class='tableauPlaceholder' id='viz1775866208041' style='width:100%;height:100%;position:relative;'>
-            <noscript><a href='#'><img alt='D1: Introduction' src='https://public.tableau.com/static/images/Mo/Mortgage_Analytics/D1Introduction/1_rss.png' style='border:none;width:100%;'/></a></noscript>
-            <object class='tableauViz' style='display:none;width:100%;height:100%;'>
+        <div class='tableauPlaceholder' style='width:100%;height:100%;'>
+            <noscript><a href='#'><img alt='D1: Portfolio Health Overview' src='https://public.tableau.com/static/images/J8/J8D36ZDKX/1_rss.png' style='border:none;width:100%;'/></a></noscript>
+            <object class='tableauViz' style='display:none;'>
                 <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
                 <param name='embed_code_version' value='3' />
-                <param name='site_root' value='' />
-                <param name='name' value='Mortgage_Analytics/D1Introduction' />
-                <param name='tabs' value='no' />
+                <param name='path' value='shared/J8D36ZDKX' />
                 <param name='toolbar' value='yes' />
-                <param name='static_image' value='https://public.tableau.com/static/images/Mo/Mortgage_Analytics/D1Introduction/1.png' />
+                <param name='static_image' value='https://public.tableau.com/static/images/J8/J8D36ZDKX/1.png' />
                 <param name='animate_transition' value='yes' />
                 <param name='display_static_image' value='yes' />
                 <param name='display_spinner' value='yes' />
@@ -38,51 +33,12 @@
     </div>
 </div>
 <script type='text/javascript'>
-    // Initialize Tableau embed
-    var divElement = document.getElementById('viz1775866208041');
-    var vizElement = divElement.getElementsByTagName('object')[0];
-    if (divElement.offsetWidth > 800) {
-        vizElement.style.width = '1400px'; vizElement.style.height = '927px';
-    } else if (divElement.offsetWidth > 500) {
-        vizElement.style.width = '1400px'; vizElement.style.height = '927px';
-    } else {
-        vizElement.style.width = '100%'; vizElement.style.height = '727px';
-    }
+    var vizElement = document.querySelector('.tableauViz');
+    vizElement.style.width = '100%';
+    vizElement.style.height = '100%';
     var scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
-
-    // Reset: revert all filters via Tableau JS API, falling back to embed reload
-    function resetDashboard() {
-        var btn = document.getElementById('resetDashboardBtn');
-        btn.textContent = '↺ Resetting…';
-        btn.disabled = true;
-
-        try {
-            // viz_v1.js API: VizManager holds all initialized viz objects
-            var vizs = tableau && tableau.VizManager && tableau.VizManager.getVizs();
-            if (vizs && vizs.length > 0) {
-                vizs[0].revertAllAsync().then(function() {
-                    btn.textContent = '↺ Reset Dashboard';
-                    btn.disabled = false;
-                });
-                return;
-            }
-        } catch(e) {}
-
-        // Fallback: destroy and recreate the embed (navigates back to D1:Introduction)
-        var container = document.getElementById('viz1775866208041');
-        var parent = container.parentNode;
-        var clone = container.cloneNode(true);
-        parent.replaceChild(clone, container);
-        var newVizEl = clone.getElementsByTagName('object')[0];
-        newVizEl.style.width = vizElement.style.width;
-        newVizEl.style.height = vizElement.style.height;
-        var newScript = document.createElement('script');
-        newScript.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-        newVizEl.parentNode.insertBefore(newScript, newVizEl);
-        setTimeout(function() { btn.textContent = '↺ Reset Dashboard'; btn.disabled = false; }, 2000);
-    }
 </script>
 </body>
 </html>
