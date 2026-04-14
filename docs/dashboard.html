@@ -10,18 +10,30 @@
 <body>
 <div class="dashboard-page">
     <div class="dashboard-topbar">
-        <a href="index.html" class="dashboard-back">← Back to Portfolio</a>
+        <div style="display:flex;gap:14px;align-items:center;">
+            <a href="index.html" class="dashboard-back">← Back to Portfolio</a>
+            <button id="resetBtn" onclick="resetDashboard()"
+                style="background:transparent;color:var(--accent);border:1px solid var(--accent);
+                       padding:5px 14px;border-radius:6px;font-size:13px;font-weight:500;
+                       cursor:pointer;transition:background 0.2s,color 0.2s;"
+                onmouseover="this.style.background='var(--accent)';this.style.color='#0d1b2a'"
+                onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">
+                ↺ Reset
+            </button>
+        </div>
         <span class="dashboard-credit">&copy; 2026 Amjad Ali Kudsi · Mortgage Servicing Analytics</span>
     </div>
-    <div class="dashboard-embed">
-        <div class='tableauPlaceholder' style='width:100%;height:100%;'>
-            <noscript><a href='#'><img alt='D1: Portfolio Health Overview' src='https://public.tableau.com/static/images/J8/J8D36ZDKX/1_rss.png' style='border:none;width:100%;'/></a></noscript>
+    <div class="dashboard-embed" id="dashboard-embed-wrap">
+        <div class='tableauPlaceholder' id='viz1775866208041' style='width:100%;height:100%;position:relative;'>
+            <noscript><a href='#'><img alt='D1: Introduction' src='https://public.tableau.com/static/images/Mo/Mortgage_Analytics/D1Introduction/1_rss.png' style='border:none;width:100%;'/></a></noscript>
             <object class='tableauViz' style='display:none;'>
                 <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
                 <param name='embed_code_version' value='3' />
-                <param name='path' value='shared/J8D36ZDKX' />
+                <param name='site_root' value='' />
+                <param name='name' value='Mortgage_Analytics/D1Introduction' />
+                <param name='tabs' value='no' />
                 <param name='toolbar' value='yes' />
-                <param name='static_image' value='https://public.tableau.com/static/images/J8/J8D36ZDKX/1.png' />
+                <param name='static_image' value='https://public.tableau.com/static/images/Mo/Mortgage_Analytics/D1Introduction/1.png' />
                 <param name='animate_transition' value='yes' />
                 <param name='display_static_image' value='yes' />
                 <param name='display_spinner' value='yes' />
@@ -33,12 +45,64 @@
     </div>
 </div>
 <script type='text/javascript'>
-    var vizElement = document.querySelector('.tableauViz');
-    vizElement.style.width = '100%';
-    vizElement.style.height = '100%';
+    // Size and initialize the embed
+    var divElement = document.getElementById('viz1775866208041');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    if (divElement.offsetWidth > 800) {
+        vizElement.style.width = '1400px'; vizElement.style.height = '927px';
+    } else if (divElement.offsetWidth > 500) {
+        vizElement.style.width = '1400px'; vizElement.style.height = '927px';
+    } else {
+        vizElement.style.width = '100%'; vizElement.style.height = '727px';
+    }
     var scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
+
+    // Reset: tries the Tableau API first, falls back to full embed reload
+    function resetDashboard() {
+        var btn = document.getElementById('resetBtn');
+        btn.textContent = '↺ Resetting…';
+        btn.disabled = true;
+
+        // Attempt Tableau JS API revert (works if viz_v1.js has fully initialized)
+        try {
+            var vizs = tableau && tableau.VizManager && tableau.VizManager.getVizs();
+            if (vizs && vizs.length > 0) {
+                vizs[0].revertAllAsync().then(function() {
+                    btn.textContent = '↺ Reset';
+                    btn.disabled = false;
+                });
+                return;
+            }
+        } catch(e) {}
+
+        // Fallback: destroy and recreate the embed from scratch
+        var wrap = document.getElementById('dashboard-embed-wrap');
+        wrap.innerHTML = `
+            <div class='tableauPlaceholder' id='viz1775866208041' style='width:100%;height:100%;position:relative;'>
+                <object class='tableauViz' style='display:none;width:${vizElement.style.width};height:${vizElement.style.height};'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                    <param name='embed_code_version' value='3' />
+                    <param name='site_root' value='' />
+                    <param name='name' value='Mortgage_Analytics/D1Introduction' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https://public.tableau.com/static/images/Mo/Mortgage_Analytics/D1Introduction/1.png' />
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                </object>
+            </div>`;
+        var newObj = wrap.querySelector('.tableauViz');
+        var s = document.createElement('script');
+        s.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        newObj.parentNode.insertBefore(s, newObj);
+        setTimeout(function() { btn.textContent = '↺ Reset'; btn.disabled = false; }, 3000);
+    }
 </script>
 </body>
 </html>
